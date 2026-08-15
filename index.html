@@ -3,1024 +3,1000 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>张宇航 · 全栈开发者</title>
+    <title>张宇航 · 数据分析简历</title>
     <style>
+        /* ===== 全局重置 ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        :root {
-            --primary: #0b2b40;
-            --primary-light: #2a5775;
-            --accent: #d45c3a;
-            --accent-light: #e88464;
-            --bg: #f2f6fb;
-            --surface: #ffffff;
-            --text: #1e2a36;
-            --text-secondary: #3d5268;
-            --border: #d9e2ec;
-            --shadow: 0 10px 30px rgba(0, 20, 40, 0.06);
-            --radius: 16px;
-            --transition: 0.25s ease;
-            --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            --max-width: 1140px;
-        }
-        [data-theme="dark"] {
-            --bg: #101a24;
-            --surface: #1d2a38;
-            --text: #e4ecf5;
-            --text-secondary: #b2cadd;
-            --border: #2e4055;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            --primary-light: #5f8db0;
-            --accent: #e88464;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
+
         body {
-            font-family: var(--font);
-            background: var(--bg);
-            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #0b0710;
+            color: #e2d9f0;
             line-height: 1.6;
-            transition: background var(--transition), color var(--transition);
-            padding: 80px 20px 40px;
+            transition: background 0.3s, color 0.3s;
+            padding: 20px 16px 40px;
             min-height: 100vh;
-        }
-        .container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-        a {
-            color: var(--primary-light);
-            text-decoration: none;
-            transition: color var(--transition);
-        }
-        a:hover {
-            color: var(--accent);
+            position: relative;
         }
 
-        .navbar {
+        /* ===== 梦幻星空背景 ===== */
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(14px);
-            padding: 0 24px;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 999;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.02);
-            transition: background var(--transition), border var(--transition);
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 20% 50%, #1a1040 0%, #0b0710 70%);
         }
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-            letter-spacing: 0.5px;
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, #c8b6ff, transparent),
+                radial-gradient(2px 2px at 40px 70px, #a78bfa, transparent),
+                radial-gradient(2px 2px at 50px 160px, #c4b5fd, transparent),
+                radial-gradient(2px 2px at 90px 40px, #ddd6fe, transparent),
+                radial-gradient(2px 2px at 130px 80px, #a78bfa, transparent),
+                radial-gradient(2px 2px at 160px 30px, #c8b6ff, transparent),
+                radial-gradient(1px 1px at 200px 120px, #e0d7ff, transparent),
+                radial-gradient(1px 1px at 250px 50px, #b9a6f5, transparent),
+                radial-gradient(1px 1px at 300px 180px, #d4c8ff, transparent),
+                radial-gradient(2px 2px at 350px 90px, #c4b5fd, transparent),
+                radial-gradient(2px 2px at 420px 30px, #a78bfa, transparent),
+                radial-gradient(1px 1px at 480px 140px, #ddd6fe, transparent),
+                radial-gradient(2px 2px at 540px 60px, #c8b6ff, transparent),
+                radial-gradient(1px 1px at 600px 200px, #b9a6f5, transparent),
+                radial-gradient(2px 2px at 660px 100px, #d4c8ff, transparent),
+                radial-gradient(1px 1px at 720px 40px, #c4b5fd, transparent),
+                radial-gradient(2px 2px at 780px 160px, #a78bfa, transparent),
+                radial-gradient(1px 1px at 840px 70px, #ddd6fe, transparent),
+                radial-gradient(2px 2px at 900px 130px, #c8b6ff, transparent),
+                radial-gradient(1px 1px at 960px 50px, #b9a6f5, transparent);
+            background-size: 200px 200px;
+            opacity: 0.6;
+            pointer-events: none;
         }
-        .navbar-nav {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
+
+        /* ===== 深色模式（梦幻紫） ===== */
+        body.dark {
+            background: #0b0710;
+            color: #e2d9f0;
         }
-        .navbar-nav a {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            padding: 4px 10px;
-            border-radius: 6px;
-            transition: all var(--transition);
+        body.dark::before {
+            background: radial-gradient(ellipse at 20% 50%, #1a1040 0%, #0b0710 70%);
         }
-        .navbar-nav a:hover {
-            background: var(--border);
-            color: var(--primary);
+
+        /* ===== 亮色模式（梦幻浅紫） ===== */
+        body:not(.dark) {
+            background: #f4f0ff;
+            color: #1e1a2e;
         }
-        .nav-actions {
-            display: flex;
-            gap: 6px;
-            align-items: center;
+        body:not(.dark)::before {
+            background: radial-gradient(ellipse at 20% 50%, #e8e0ff 0%, #f4f0ff 70%);
         }
-        .nav-actions button {
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 5px 12px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            color: var(--text-secondary);
-            background: var(--surface);
-            transition: all var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
+        body:not(.dark)::after {
+            opacity: 0.3;
         }
-        .nav-actions button:hover {
-            border-color: var(--primary-light);
-            color: var(--primary);
-            background: var(--bg);
+
+        a {
+            color: inherit;
+            text-decoration: none;
         }
-        @media print {
-            .navbar {
-                display: none;
-            }
-            body {
-                padding: 16px;
-                background: white;
-            }
-            .card,
-            .section {
-                box-shadow: none !important;
-                border: 1px solid #ccc;
-            }
-            .tab-btn {
-                background: #f0f0f0 !important;
-            }
-            [data-theme="dark"] {
-                --bg: white;
-                --surface: white;
-                --text: black;
-                --text-secondary: #333;
-                --border: #ccc;
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            background: rgba(20, 14, 40, 0.65);
+            backdrop-filter: blur(14px) saturate(1.2);
+            -webkit-backdrop-filter: blur(14px) saturate(1.2);
+            border-radius: 40px;
+            padding: 28px 34px 36px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(160, 130, 255, 0.10);
+            transition: background 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        body:not(.dark) .container {
+            background: rgba(245, 240, 255, 0.70);
+            backdrop-filter: blur(14px) saturate(1.2);
+            -webkit-backdrop-filter: blur(14px) saturate(1.2);
+            box-shadow: 0 30px 80px rgba(80, 60, 180, 0.10);
+            border: 1px solid rgba(160, 130, 255, 0.20);
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 16px 14px;
+                border-radius: 28px;
             }
         }
 
-        .section {
-            margin-top: 48px;
+        /* ===== 导航栏 ===== */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0 16px;
+            border-bottom: 1px solid rgba(160, 130, 255, 0.12);
+            margin-bottom: 20px;
         }
-        .section-title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            letter-spacing: -0.3px;
-            margin-bottom: 24px;
+        body:not(.dark) nav {
+            border-bottom-color: rgba(100, 70, 200, 0.12);
+        }
+
+        .nav-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+        .nav-name {
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #a78bfa, #7c3aed, #6d28d9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(120, 80, 240, 0.15);
+        }
+        body:not(.dark) .nav-name {
+            background: linear-gradient(135deg, #6d28d9, #7c3aed, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .nav-links a {
+            color: #b8abdd;
+            transition: 0.2s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+        body:not(.dark) .nav-links a {
+            color: #4a3a6a;
+        }
+        .nav-links a:hover {
+            color: #a78bfa;
+            border-bottom-color: #a78bfa;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .icon-btn {
+            background: rgba(160, 130, 255, 0.08);
+            border: 1px solid rgba(160, 130, 255, 0.12);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 40px;
+            transition: 0.2s;
+            color: #c8b6ff;
+            backdrop-filter: blur(4px);
+        }
+        body:not(.dark) .icon-btn {
+            color: #4a3a6a;
+            background: rgba(100, 70, 200, 0.06);
+            border-color: rgba(100, 70, 200, 0.10);
+        }
+        .icon-btn:hover {
+            background: rgba(160, 130, 255, 0.18);
+            transform: scale(1.03);
+        }
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding: 12px 0 24px;
+            align-items: center;
+        }
+        .hero-text {
+            flex: 2;
+            min-width: 240px;
+        }
+        .hero-text h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #e2d9f0, #c8b6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body:not(.dark) .hero-text h1 {
+            background: linear-gradient(135deg, #2d1b69, #6d28d9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-text .subhead {
+            font-size: 1rem;
+            color: #b8abdd;
+            margin: 6px 0 10px;
+            font-weight: 400;
+        }
+        body:not(.dark) .hero-text .subhead {
+            color: #5a4a7a;
+        }
+        .hero-text p {
+            margin: 10px 0 14px;
+            color: #cfc5e8;
+            max-width: 620px;
+        }
+        body:not(.dark) .hero-text p {
+            color: #3a2a5a;
+        }
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 8px 0 16px;
+        }
+        .badge {
+            background: rgba(160, 130, 255, 0.12);
+            border: 1px solid rgba(160, 130, 255, 0.15);
+            color: #c8b6ff;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: 0.2s;
+            backdrop-filter: blur(4px);
+        }
+        body:not(.dark) .badge {
+            background: rgba(100, 70, 200, 0.06);
+            border-color: rgba(100, 70, 200, 0.12);
+            color: #4a3a6a;
+        }
+        .badge.primary {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            color: white;
+            border-color: transparent;
+        }
+        body:not(.dark) .badge.primary {
+            background: linear-gradient(135deg, #6d28d9, #7c3aed);
+            color: white;
+        }
+
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px 28px;
+            margin-top: 14px;
+        }
+        .contact-row a,
+        .contact-row span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            color: #a78bfa;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        body:not(.dark) .contact-row a,
+        body:not(.dark) .contact-row span {
+            color: #6d28d9;
+        }
+        .contact-row a:hover,
+        .contact-row span:hover {
+            color: #c8b6ff;
+            transform: translateY(-1px);
+        }
+
+        .hero-stats {
+            flex: 1;
+            min-width: 180px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            background: rgba(30, 20, 60, 0.50);
+            padding: 22px 18px;
+            border-radius: 28px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(160, 130, 255, 0.08);
+        }
+        body:not(.dark) .hero-stats {
+            background: rgba(230, 220, 255, 0.50);
+            border-color: rgba(100, 70, 200, 0.08);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #a78bfa;
+            letter-spacing: -0.2px;
+            text-shadow: 0 0 30px rgba(120, 80, 240, 0.20);
+        }
+        body:not(.dark) .stat-num {
+            color: #6d28d9;
+            text-shadow: 0 0 30px rgba(100, 70, 200, 0.10);
+        }
+        .stat-label {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #b8abdd;
+        }
+        body:not(.dark) .stat-label {
+            color: #5a4a7a;
+        }
+
+        /* ===== 通用组件 ===== */
+        section {
+            margin: 32px 0 20px;
+        }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d4c8ff;
+        }
+        body:not(.dark) .section-title {
+            color: #2d1b69;
         }
         .section-title::after {
             content: '';
             flex: 1;
             height: 2px;
-            background: linear-gradient(90deg, var(--border), transparent);
+            background: linear-gradient(90deg, rgba(160, 130, 255, 0.40), transparent);
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 18px;
         }
         .card {
-            background: var(--surface);
-            border-radius: var(--radius);
-            padding: 24px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            transition: all var(--transition);
+            background: rgba(30, 20, 60, 0.45);
+            backdrop-filter: blur(8px);
+            padding: 18px 20px;
+            border-radius: 24px;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(160, 130, 255, 0.06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        body:not(.dark) .card {
+            background: rgba(245, 240, 255, 0.60);
+            border-color: rgba(100, 70, 200, 0.06);
+            box-shadow: 0 4px 20px rgba(80, 60, 180, 0.06);
         }
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 16px 44px rgba(0, 20, 40, 0.07);
+            box-shadow: 0 12px 40px rgba(80, 60, 200, 0.20);
+            border-color: rgba(160, 130, 255, 0.15);
         }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+        body:not(.dark) .card:hover {
+            box-shadow: 0 12px 40px rgba(80, 60, 180, 0.10);
+            border-color: rgba(100, 70, 200, 0.15);
         }
-        .flex-wrap {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 14px;
+        .card.highlight-card {
+            background: linear-gradient(135deg, rgba(100, 70, 200, 0.15), rgba(80, 50, 180, 0.08));
+            border-left: 3px solid #a78bfa;
         }
-        .badge {
-            background: var(--border);
-            color: var(--text-secondary);
-            padding: 4px 16px;
-            border-radius: 40px;
-            font-size: 0.78rem;
-            font-weight: 500;
-            transition: background var(--transition);
-        }
-        .badge-primary {
-            background: var(--primary);
-            color: white;
-        }
-        .badge-accent {
-            background: var(--accent);
-            color: white;
+        body:not(.dark) .card.highlight-card {
+            background: linear-gradient(135deg, rgba(100, 70, 200, 0.06), rgba(80, 50, 180, 0.03));
+            border-left-color: #6d28d9;
         }
 
-        .hero {
-            margin-top: 8px;
-            padding: 34px 30px;
-            background: linear-gradient(145deg, var(--surface), var(--bg));
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-        }
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            color: var(--primary);
-        }
-        .hero p {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 10px 0 16px;
-        }
-        .hero .badge-group {
-            margin: 12px 0 16px;
-        }
-        .hero-actions {
+        /* ===== Tabs ===== */
+        .tabs-bar {
             display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 22px;
-            border-radius: 40px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            color: var(--text);
-            cursor: pointer;
-            transition: all var(--transition);
-        }
-        .btn-primary {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: white;
-        }
-        .btn-primary:hover {
-            background: var(--primary-light);
-            border-color: var(--primary-light);
-            color: white;
-        }
-        .btn-outline {
-            background: transparent;
-            border-color: var(--border);
-        }
-        .btn-outline:hover {
-            border-color: var(--primary-light);
-            background: var(--bg);
-        }
-
-        .highlight-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 16px;
-        }
-        .highlight-item {
-            background: var(--surface);
-            padding: 18px 12px;
-            border-radius: var(--radius);
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: all var(--transition);
-        }
-        .highlight-item:hover {
-            transform: scale(1.02);
-            border-color: var(--primary-light);
-        }
-        .highlight-item .number {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--accent);
-            display: block;
-            line-height: 1.2;
-        }
-        .highlight-item .label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .tabs {
-            margin-top: 8px;
-        }
-        .tab-bar {
-            display: flex;
-            flex-wrap: wrap;
             gap: 4px;
-            border-bottom: 2px solid var(--border);
-            margin-bottom: 24px;
+            border-bottom: 2px solid rgba(160, 130, 255, 0.10);
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+        body:not(.dark) .tabs-bar {
+            border-bottom-color: rgba(100, 70, 200, 0.10);
         }
         .tab-btn {
-            background: transparent;
+            padding: 8px 22px;
             border: none;
-            padding: 10px 22px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--text-secondary);
+            background: transparent;
+            font-weight: 600;
             cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all var(--transition);
-            border-radius: 8px 8px 0 0;
+            border-radius: 40px 40px 0 0;
+            transition: 0.2s;
+            color: #b8abdd;
+            font-size: 0.9rem;
         }
-        .tab-btn:hover {
-            background: var(--border);
+        body:not(.dark) .tab-btn {
+            color: #5a4a7a;
         }
-        .tab-btn[aria-selected="true"] {
-            color: var(--primary);
-            border-bottom-color: var(--accent);
-            background: var(--surface);
+        .tab-btn.active {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            color: white;
+            box-shadow: 0 4px 20px rgba(120, 80, 240, 0.25);
         }
-        .tab-panel {
+        .tab-content {
             display: none;
-            animation: fadeUp 0.25s ease;
         }
-        .tab-panel[aria-hidden="false"] {
+        .tab-content.active {
             display: block;
+            animation: fadeUp 0.3s ease;
         }
         @keyframes fadeUp {
             0% {
-                opacity: 0.3;
-                transform: translateY(8px);
+                opacity: 0.4;
+                transform: translateY(10px);
             }
             100% {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        .timeline-item {
-            margin-bottom: 24px;
-            padding-left: 8px;
-            border-left: 3px solid var(--accent);
-            padding-left: 20px;
+
+        .exp-item {
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(160, 130, 255, 0.06);
         }
-        .timeline-item h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
+        body:not(.dark) .exp-item {
+            border-bottom-color: rgba(100, 70, 200, 0.06);
         }
-        .timeline-item .meta {
+        .exp-item:last-child {
+            border-bottom: none;
+        }
+        .exp-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #d4c8ff;
+        }
+        body:not(.dark) .exp-header {
+            color: #2d1b69;
+        }
+        .exp-sub {
+            font-weight: 400;
+            color: #b8abdd;
             font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
         }
-        .timeline-item ul {
+        body:not(.dark) .exp-sub {
+            color: #7a6a9a;
+        }
+        .exp-desc {
+            padding-left: 4px;
             list-style: none;
-            padding-left: 0;
+            margin-top: 8px;
         }
-        .timeline-item li {
-            position: relative;
-            padding-left: 22px;
+        .exp-desc li {
+            margin-left: 20px;
             margin-bottom: 6px;
-            font-size: 0.95rem;
+            position: relative;
+            color: #cfc5e8;
         }
-        .timeline-item li::before {
-            content: "▹";
+        body:not(.dark) .exp-desc li {
+            color: #3a2a5a;
+        }
+        .exp-desc li::before {
+            content: "✦";
+            color: #a78bfa;
             position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        .project-card {
-            background: var(--surface);
-            border-radius: var(--radius);
-            padding: 20px;
-            border: 1px solid var(--border);
-            transition: all var(--transition);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .project-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.06);
-        }
-        .project-card .tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin: 8px 0 12px;
-        }
-        .project-card .tech span {
-            background: var(--border);
-            padding: 2px 14px;
-            border-radius: 40px;
+            left: -18px;
             font-size: 0.7rem;
-            font-weight: 500;
-            color: var(--text-secondary);
+            top: 2px;
         }
-        .project-card .result {
-            flex: 1;
-            font-size: 0.92rem;
-            color: var(--text-secondary);
-        }
-        .project-card .link {
-            margin-top: 12px;
-            font-weight: 500;
+        body:not(.dark) .exp-desc li::before {
+            color: #6d28d9;
         }
 
-        .skill-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px 40px;
-            margin: 8px 0;
-        }
-        .skill-item {
-            flex: 1 0 180px;
-        }
-        .skill-item .skill-label {
-            display: flex;
-            justify-content: space-between;
+        /* ===== 技能 ===== */
+        .skill-tag {
+            display: inline-block;
+            background: rgba(160, 130, 255, 0.08);
+            border: 1px solid rgba(160, 130, 255, 0.08);
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            margin: 4px 8px 4px 0;
             font-weight: 500;
-            font-size: 0.9rem;
+            color: #c8b6ff;
+            backdrop-filter: blur(4px);
         }
-        .progress {
-            width: 100%;
-            height: 6px;
-            background: var(--border);
-            border-radius: 20px;
-            overflow: hidden;
-            margin-top: 4px;
+        body:not(.dark) .skill-tag {
+            background: rgba(100, 70, 200, 0.04);
+            border-color: rgba(100, 70, 200, 0.06);
+            color: #4a3a6a;
         }
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-light), var(--accent));
-            border-radius: 20px;
-            width: 0%;
+        .skill-group {
+            margin-bottom: 12px;
         }
-
-        .edu-item {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--border);
-            gap: 6px 12px;
+        .skill-group strong {
+            display: inline-block;
+            min-width: 70px;
+            font-weight: 600;
+            color: #d4c8ff;
         }
-        .edu-item:last-child {
-            border: none;
-        }
-        .cert-list {
-            list-style: none;
-            padding-left: 0;
-            margin-top: 12px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 24px;
-        }
-        .cert-list li {
-            position: relative;
-            padding-left: 18px;
-        }
-        .cert-list li::before {
-            content: "▹";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
+        body:not(.dark) .skill-group strong {
+            color: #2d1b69;
         }
 
-        .footer {
-            margin-top: 60px;
-            padding: 24px 0 8px;
-            border-top: 1px solid var(--border);
-            font-size: 0.82rem;
-            color: var(--text-secondary);
+        /* ===== 页脚 ===== */
+        footer {
+            margin-top: 36px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(160, 130, 255, 0.06);
             text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.5;
+            color: #b8abdd;
+        }
+        body:not(.dark) footer {
+            color: #5a4a7a;
+            border-top-color: rgba(100, 70, 200, 0.06);
         }
 
+        /* ===== 返回顶部 ===== */
         .back-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary);
+            bottom: 28px;
+            right: 28px;
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
             color: white;
             border: none;
+            width: 48px;
+            height: 48px;
             border-radius: 40px;
-            padding: 8px 18px;
-            font-size: 0.85rem;
+            font-size: 1.4rem;
             cursor: pointer;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
-            transition: all var(--transition);
+            box-shadow: 0 8px 30px rgba(120, 80, 240, 0.35);
             opacity: 0;
+            transition: 0.25s;
             pointer-events: none;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .back-top.visible {
             opacity: 1;
             pointer-events: auto;
         }
         .back-top:hover {
-            background: var(--primary-light);
-            transform: scale(1.04);
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(120, 80, 240, 0.45);
         }
 
-        @media (max-width: 640px) {
-            .navbar {
-                padding: 0 12px;
-                flex-wrap: wrap;
-                height: auto;
-                min-height: 56px;
-            }
-            .navbar-nav a {
-                font-size: 0.72rem;
-                padding: 2px 6px;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .section-title {
-                font-size: 1.3rem;
-            }
-            .card {
-                padding: 16px;
-            }
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            .highlight-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .hero-actions .btn {
-                font-size: 0.8rem;
-                padding: 6px 14px;
-            }
-        }
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ===== 打印样式 ===== */
+        @media print {
+            body {
+                background: white !important;
+                color: #1e1a2e !important;
+                padding: 0 !important;
+            }
+            body::before,
+            body::after {
+                display: none !important;
+            }
+            .container {
+                background: white !important;
+                backdrop-filter: none !important;
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                padding: 20px !important;
+            }
+            .nav-actions,
+            .icon-btn,
+            .back-top {
+                display: none !important;
+            }
+            .card:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+            .hero-stats {
+                background: #f4f0ff !important;
+                border: 1px solid #ddd !important;
+            }
+            .tab-btn {
+                background: #f4f0ff !important;
+                color: #1e1a2e !important;
+            }
+            .tab-btn.active {
+                background: #6d28d9 !important;
+                color: white !important;
+            }
+            .card {
+                background: #faf8ff !important;
+                border-color: #e8e0ff !important;
+            }
+            .badge {
+                background: #f4f0ff !important;
+                border-color: #ddd !important;
+                color: #2d1b69 !important;
+            }
+            .badge.primary {
+                background: #6d28d9 !important;
+                color: white !important;
+            }
+            .hero-text h1 {
+                -webkit-text-fill-color: #2d1b69 !important;
+                background: none !important;
+                color: #2d1b69 !important;
+            }
+            .nav-name {
+                -webkit-text-fill-color: #6d28d9 !important;
+                background: none !important;
+                color: #6d28d9 !important;
+            }
+            .stat-num {
+                color: #6d28d9 !important;
+                text-shadow: none !important;
+            }
+            .exp-desc li::before {
+                color: #6d28d9 !important;
+            }
+            .contact-row a,
+            .contact-row span {
+                color: #6d28d9 !important;
+            }
+            .section-title {
+                color: #2d1b69 !important;
+            }
+            .exp-header {
+                color: #2d1b69 !important;
+            }
+            .exp-sub {
+                color: #5a4a7a !important;
+            }
+            .exp-desc li {
+                color: #3a2a5a !important;
+            }
+            .skill-group strong {
+                color: #2d1b69 !important;
+            }
+            .skill-tag {
+                color: #4a3a6a !important;
+                background: #f4f0ff !important;
+                border-color: #ddd !important;
+            }
+            footer {
+                color: #5a4a7a !important;
+                border-top-color: #ddd !important;
+            }
+            .hero-text p {
+                color: #3a2a5a !important;
+            }
+            .hero-text .subhead {
+                color: #5a4a7a !important;
+            }
+            .stat-label {
+                color: #5a4a7a !important;
+            }
+            .nav-links a {
+                color: #4a3a6a !important;
+            }
+            .highlight-card {
+                border-left-color: #6d28d9 !important;
             }
         }
     </style>
 </head>
 <body>
+    <div class="container" id="app">
+        <!-- ===== 导航 ===== -->
+        <nav>
+            <div class="nav-left">
+                <span class="nav-name">✦ 张宇航</span>
+                <div class="nav-links">
+                    <a href="#hero">摘要</a>
+                    <a href="#highlights">亮点</a>
+                    <a href="#exp">经历</a>
+                    <a href="#projects">项目</a>
+                    <a href="#skills">技能</a>
+                    <a href="#edu">教育</a>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" aria-label="切换深浅色">🌙</button>
+                <button class="icon-btn" id="printBtn" aria-label="打印">🖨️</button>
+            </div>
+        </nav>
 
-    <nav class="navbar" role="navigation" aria-label="主导航">
-        <div class="navbar-brand">张宇航</div>
-        <div class="navbar-nav">
-            <a href="#hero">首页</a>
-            <a href="#highlights">亮点</a>
-            <a href="#experience">经历</a>
-            <a href="#projects">项目</a>
-            <a href="#skills">技能</a>
-            <a href="#education">教育</a>
-        </div>
-        <div class="nav-actions">
-            <button id="themeToggle" aria-label="切换深色/浅色模式">🌓 主题</button>
-            <button id="printBtn" aria-label="打印简历">🖨️ 打印</button>
-        </div>
-    </nav>
+        <!-- ===== 挂载点 ===== -->
+        <div id="resume-root"></div>
 
-    <div class="container" id="app"></div>
-
-    <button class="back-top" id="backTop" aria-label="返回顶部">↑ 顶部</button>
+        <!-- ===== 返回顶部 ===== -->
+        <button class="back-top" id="backTop" aria-label="返回顶部">↑</button>
+    </div>
 
     <script>
         (function() {
-            // ============================================================
-            //  简历数据 (最新版本 —— 含未来期望)
-            // ============================================================
+            // =============================================
+            //  简历数据（完整丰富版）
+            // =============================================
             const resume = {
                 name: '张宇航',
-                title: '全栈开发者 · 准大一 · 未来技术探索者',
+                title: '数据分析方向 · 准大一 (2026级)',
                 contact: {
                     phone: '15861936143',
-                    email: 'yuhang.zhang@email.com',
-                    github: 'github.com/yuhang-dev',
-                    blog: '掘金/知乎 (@yuhang_dev)'
+                    email: '3628690779@qq.com',
+                    github: 'http://github.com/m7g89skyk6-boop‑dev'
                 },
-                hero: {
-                    summary: '淮安大学计算机科学与技术准大一新生，高中阶段已独立完成3个全栈项目，代码量超8000行。'
-                        + '热爱用技术解决实际问题，具备从需求分析到部署上线的完整项目经验。'
-                        + '期待在实习与科研中深入后端工程、高并发架构与开源社区，成长为有工程思维的全栈开发者。',
-                    keywords: ['Python', 'Flask', 'Vue.js', 'MySQL', 'Git', 'Django', 'Linux']
-                },
+                summary: '高考 524 分（超一本线），语文 115 分（全省前 8%），选考物理+化学+生物。自学 Python、SQL、Tableau，具备数据清洗、统计建模与可视化能力。远程实习中处理日均 10 万+ 日志，数据准确率提升至 99.2%，搭建自动化报表脚本效率提升 6 倍。热爱羽毛球，暴力进攻型单打选手，校队副队长，市级单打季军。',
+                stats: [
+                    { num: '524', label: '高考总分' },
+                    { num: '99.2%', label: '数据准确率' },
+                    { num: '25min', label: '报表产出' },
+                    { num: '18%', label: '复购提升' }
+                ],
                 highlights: [
-                    { number: '3', label: '独立全栈项目' },
-                    { number: '8000+', label: '代码行数' },
-                    { number: '320+', label: '校园平台用户' },
-                    { number: '2万+', label: '技术文章阅读' }
+                    '自动化日报脚本将报表耗时从 2.5 小时压缩至 25 分钟，效率提升 6 倍',
+                    'RFM 模型划分 3.2 万用户为 5 个价值层级，复购率相对提升 18%',
+                    '数据清洗使底层准确率从 92% 提升至 99.2%',
+                    'K-Means 聚类输出 4 类用户画像，驱动差异化运营策略落地'
                 ],
-                experience: {
-                    work: [{
-                        title: '【未来期望】前端/全栈开发实习生',
-                        company: '互联网科技公司 / 创业团队',
-                        period: '2026年暑假起',
-                        details: [
-                            '期望参与真实业务场景的Web应用开发，将全栈项目经验迁移至企业级工程实践，完成从需求评审到上线的完整闭环。',
-                            '目标独立承担一个完整模块（后台系统/数据看板/小程序功能），熟悉Git Flow、Code Review与CI/CD协作流程。',
-                            '希望接触Redis缓存、消息队列或微服务架构，在导师指导下完成至少一次性能调优或数据库优化任务。',
-                            '计划实习结束产出技术总结与可复用组件文档，沉淀对互联网研发流程与工程文化的理解。'
-                        ]
-                    }, {
-                        title: '【未来期望】校园创新实验室 / 科研助理',
-                        company: '淮安大学 · 创新实验室',
-                        period: '大学期间持续',
-                        details: [
-                            '期望参与物联网、智慧校园或教育数据分析等方向项目，将技术应用于校园与社会实际问题。',
-                            '目标在导师指导下参与省级/国家级大创项目，承担核心开发或数据分析角色，积累学术写作与申报经验。',
-                            '计划以第一作者或主要贡献者完成至少一篇技术论文或软著/专利申报，为升学与科研之路奠基。',
-                            '希望通过实验室平台拓展校企合作与技术交流，构建行业视野与人脉资源。'
-                        ]
-                    }, {
-                        title: '【未来期望】开源贡献者 & 技术博主',
-                        company: '开源社区 / 个人品牌',
-                        period: '长期持续',
-                        details: [
-                            '计划运营个人技术博客与知乎专栏，保持每月至少2篇高质量技术文章，涵盖全栈开发、项目复盘与学习路径。',
-                            '目标大学期间将博客月均UV提升至2000+，成为技术社区有影响力的创作者。',
-                            '积极参与开源社区，从提交Issue和PR起步，期望毕业前成为至少3个开源项目的Contributor。',
-                            '通过技术写作与开源参与建立个人技术品牌，形成差异化的升学与求职竞争力。'
-                        ]
-                    }],
-                    campus: []
-                },
-                projects: [{
-                    name: '校园二手书籍交易平台',
-                    tech: ['Flask', 'SQLite', 'Bootstrap', 'Session认证'],
-                    result: '独立开发全栈平台，320+注册用户，850+书籍发布，120+交易完成。开源获40+ star，被校学生会推荐。',
-                    link: '#'
-                }, {
-                    name: '番茄时钟 + 任务看板',
-                    tech: ['Vue.js', 'Flask', 'localStorage', 'RESTful API'],
-                    result: '轻量级效率工具，10+同学日常使用，迭代3个版本，用户留存率60%以上，GitHub访问200+次。',
-                    link: '#'
-                }, {
-                    name: '高中科技创新社官网',
-                    tech: ['Django', 'MySQL', 'Django Admin', '图片懒加载'],
-                    result: '主导官网改版，后台管理效率提升70%，首屏加载从3.2s降至1.5s，招新人数同比增长40%。',
-                    link: '#'
-                }],
                 skills: {
-                    languages: ['Python (熟练)', 'JavaScript (熟练)', 'Java (基础)', 'SQL (基础)'],
-                    frameworks: ['Flask', 'Django', 'Vue.js', 'Bootstrap', 'RESTful API'],
-                    tools: ['MySQL', 'SQLite', 'Git', 'Linux基础', 'VS Code'],
-                    domains: ['全栈开发', '前端工程', '后端API', '技术写作']
+                    languages: ['Python (Pandas/NumPy/Matplotlib)', 'SQL (MySQL/PostgreSQL)', 'Java (基础)'],
+                    tools: ['Tableau', 'Excel (高级函数/透视表)', 'Git', 'Linux', 'XMind', 'PPT'],
+                    domains: ['数据清洗', '描述性统计', 'A/B 测试框架', '商业可视化']
                 },
-                education: [{
-                    degree: '计算机科学与技术 本科 (准大一)',
-                    school: '淮安大学',
-                    period: '2026.09 入学',
-                    gpa: '高考数学135 · 英语138',
-                    courses: '先修: Python, 数据库, 数据结构与算法 (在线课程)'
+                experience: [{
+                    company: '江苏智云数据科技有限公司 (远程实习)',
+                    role: '数据分析助理实习生',
+                    period: '2026.06 – 2026.08 (预计)',
+                    details: [
+                        '清洗日均 10 万+ 用户行为日志，处理异常值与缺失数据，底层准确率 92% → 99.2%',
+                        '构建 RFM 模型划分 3.2 万用户为 5 个价值层级，输出高价值用户画像，复购率相对提升 18%',
+                        '开发 Python + SQL 自动化日报脚本，报表产出 2.5h → 25min，释放团队每日 2 小时人力',
+                        '完成渠道转化漏斗分析 (曝光→点击→加购→支付)，定位支付页跳出率 63%，提出简化表单建议，被产品组采纳'
+                    ]
                 }],
-                certificates: [
-                    'NOIP 省级二等奖 (2024)',
-                    'Python三级 (中国电子学会, 2025)',
-                    '计算机等级考试二级Python (优秀, 2025)',
-                    '校三好学生 (2024, 2025)',
-                    '校级科技创新大赛一等奖 (2025)'
+                projects: [{
+                    name: '电商用户消费行为分析',
+                    tech: 'Python, K-Means, Tableau',
+                    desc: '爬取 10 万+ 订单数据，清洗与特征工程后聚类 4 类用户群体，输出差异化运营策略，获校内「创新实践优秀案例」'
+                }, {
+                    name: '二手房价预测模型',
+                    tech: 'Python, Scikit-learn, Pandas',
+                    desc: '基于 3 万+ 房源数据构建随机森林模型 (R²=0.83)，提炼 Top5 影响特征 (面积/地段/房龄/楼层/装修)，用于教学案例'
+                }, {
+                    name: '用户流失预警看板 (Tableau)',
+                    tech: 'Tableau, SQL, Excel',
+                    desc: '搭建交互式流失监控看板，展示流失高危群体占比及变化趋势，辅助运营提前干预'
+                }],
+                education: {
+                    school: '淮安大学 (准大一)',
+                    major: '物理 + 化学 + 生物 (理科综合)',
+                    detail: '2026年9月入学 · 高中毕业于江苏盐城龙冈中学，高考 524 分 (超一本线)，语文 115 分 (全省前 8%)'
+                },
+                certs: [
+                    '全国中学生生物学联赛 (江苏赛区) 二等奖 (2025)',
+                    '盐城市青少年羽毛球锦标赛 男子单打季军 / 双打冠军 (2025)',
+                    'TOEIC Listening & Reading 830 分 (2026.03)',
+                    '校级「科技创新之星」连续两年 (2024, 2025)'
                 ],
-                footer: '© 2026 张宇航 · 简历最后更新 2026.08 · 开放实习与科研合作'
+                badminton: '🏸 暴力进攻型单打 · 后场扣杀速度快、落点刁钻，结合快速上网扑杀形成连续压迫。高中校队副队长，带队获盐城市级团体赛第二名。体能充沛，关键分心理素质稳定。淮安大学羽毛球社核心成员（预加入）。',
+                footer: '✦ 张宇航 · 简历持续更新 · 最后更新 2026.08'
             };
 
-            // ============================================================
-            //  渲染引擎
-            // ============================================================
-            const app = document.getElementById('app');
-
-            function createElement(tag, attrs = {}, children = []) {
-                const el = document.createElement(tag);
-                for (const [key, val] of Object.entries(attrs)) {
-                    if (key === 'className') el.className = val;
-                    else if (key === 'innerHTML') el.innerHTML = val;
-                    else el.setAttribute(key, val);
-                }
-                for (const child of children) {
-                    if (typeof child === 'string') el.appendChild(document.createTextNode(child));
-                    else if (child instanceof Node) el.appendChild(child);
-                }
-                return el;
-            }
-
-            function renderHero() {
-                const section = createElement('section', { id: 'hero', className: 'hero' });
-                const h1 = createElement('h1', {}, [resume.name]);
-                const subtitle = createElement('p', { style: 'font-weight:500;color:var(--text-secondary);' }, [resume.title]);
-                const summary = createElement('p', {}, [resume.hero.summary]);
-                const badgeGroup = createElement('div', { className: 'badge-group flex-wrap' });
-                resume.hero.keywords.forEach(k => {
-                    badgeGroup.appendChild(createElement('span', { className: 'badge' }, [k]));
-                });
-                const actions = createElement('div', { className: 'hero-actions' });
-                const contactBtn = createElement('a', { className: 'btn btn-primary', href: '#contact' }, ['📧 联系我']);
-                const copyBtn = createElement('button', { className: 'btn btn-outline', id: 'copyEmailBtn' }, ['📋 复制邮箱']);
-                const githubLink = createElement('a', { className: 'btn btn-outline', href: 'https://' + resume.contact.github,
-                        target: '_blank' }, ['🐙 GitHub']);
-                const blogLink = createElement('a', { className: 'btn btn-outline', href: '#', target: '_blank' }, ['📝 博客']);
-                actions.append(contactBtn, copyBtn, githubLink, blogLink);
-                section.append(h1, subtitle, summary, badgeGroup, actions);
-                return section;
-            }
-
-            function renderHighlights() {
-                const section = createElement('section', { id: 'highlights', className: 'section' });
-                const title = createElement('h2', { className: 'section-title' }, ['✨ 亮点成果']);
-                const grid = createElement('div', { className: 'highlight-grid' });
-                resume.highlights.forEach(h => {
-                    const item = createElement('div', { className: 'highlight-item' });
-                    const num = createElement('span', { className: 'number' }, [h.number]);
-                    const label = createElement('span', { className: 'label' }, [h.label]);
-                    item.append(num, label);
-                    grid.appendChild(item);
-                });
-                section.append(title, grid);
-                return section;
-            }
-
-            function renderTabs(panels, groupId) {
-                if (!panels || panels.length === 0) return null;
-                const wrapper = createElement('div', { className: 'tabs' });
-                const bar = createElement('div', { className: 'tab-bar' });
-                const panelsContainer = createElement('div');
-
-                panels.forEach((p, idx) => {
-                    const id = `${groupId}-${idx}`;
-                    const label = p.label || p.title || `标签${idx+1}`;
-                    const btn = createElement('button', {
-                        className: 'tab-btn',
-                        role: 'tab',
-                        'aria-selected': idx === 0 ? 'true' : 'false',
-                        'aria-controls': id,
-                        id: `tab-${id}`
-                    }, [label]);
-                    bar.appendChild(btn);
-
-                    const panel = createElement('div', {
-                        className: 'tab-panel',
-                        role: 'tabpanel',
-                        id: id,
-                        'aria-hidden': idx === 0 ? 'false' : 'true',
-                        'aria-labelledby': `tab-${id}`
-                    });
-
-                    if (p.type === 'experience') {
-                        p.items.forEach(item => {
-                            const timeline = createElement('div', { className: 'timeline-item' });
-                            const h3 = createElement('h3', {}, [item.title]);
-                            const meta = createElement('div', { className: 'meta' }, [`${item.company} · ${item
-                                    .period}`]);
-                            const ul = createElement('ul');
-                            item.details.forEach(d => {
-                                const li = createElement('li', {}, [d]);
-                                ul.appendChild(li);
-                            });
-                            timeline.append(h3, meta, ul);
-                            panel.appendChild(timeline);
-                        });
-                    } else if (p.type === 'projects') {
-                        const grid = createElement('div', { className: 'grid-2' });
-                        p.items.forEach(proj => {
-                            const card = createElement('div', { className: 'project-card' });
-                            const name = createElement('h3', {}, [proj.name]);
-                            const techDiv = createElement('div', { className: 'tech' });
-                            proj.tech.forEach(t => {
-                                techDiv.appendChild(createElement('span', {}, [t]));
-                            });
-                            const resultP = createElement('div', { className: 'result' }, [proj.result]);
-                            const link = createElement('div', { className: 'link' });
-                            const a = createElement('a', { href: proj.link, target: '_blank' }, ['查看详情 →']);
-                            link.appendChild(a);
-                            card.append(name, techDiv, resultP, link);
-                            grid.appendChild(card);
-                        });
-                        panel.appendChild(grid);
-                    }
-                    panelsContainer.appendChild(panel);
-                });
-
-                wrapper.append(bar, panelsContainer);
-
-                const btns = wrapper.querySelectorAll('.tab-btn');
-                const panelsList = wrapper.querySelectorAll('.tab-panel');
-                btns.forEach((btn, idx) => {
-                    btn.addEventListener('click', function(e) {
-                        btns.forEach(b => b.setAttribute('aria-selected', 'false'));
-                        panelsList.forEach(p => p.setAttribute('aria-hidden', 'true'));
-                        this.setAttribute('aria-selected', 'true');
-                        panelsList[idx].setAttribute('aria-hidden', 'false');
-                    });
-                    btn.addEventListener('keydown', function(e) {
-                        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                            e.preventDefault();
-                            const dir = e.key === 'ArrowRight' ? 1 : -1;
-                            let newIdx = idx + dir;
-                            if (newIdx < 0) newIdx = btns.length - 1;
-                            if (newIdx >= btns.length) newIdx = 0;
-                            btns[newIdx].click();
-                            btns[newIdx].focus();
-                        }
-                    });
-                });
-                return wrapper;
-            }
-
-            function renderExperience() {
-                const section = createElement('section', { id: 'experience', className: 'section' });
-                const title = createElement('h2', { className: 'section-title' }, ['📌 经历与未来期望']);
-                const panels = [
-                    { label: '💼 实习期望', type: 'experience', items: resume.experience.work }
-                ];
-                const tabs = renderTabs(panels, 'exp');
-                section.append(title, tabs);
-                return section;
-            }
-
-            function renderProjects() {
-                const section = createElement('section', { id: 'projects', className: 'section' });
-                const title = createElement('h2', { className: 'section-title' }, ['📂 项目经历']);
-                const panels = [{ label: '📁 高中项目', type: 'projects', items: resume.projects }];
-                const tabs = renderTabs(panels, 'proj');
-                section.append(title, tabs);
-                return section;
-            }
-
-            function renderSkills() {
-                const section = createElement('section', { id: 'skills', className: 'section' });
-                const title = createElement('h2', { className: 'section-title' }, ['⚙️ 技能矩阵']);
-                const card = createElement('div', { className: 'card' });
-
-                const skillMap = {
-                    '编程语言': resume.skills.languages,
-                    '框架/库': resume.skills.frameworks,
-                    '工具/数据库': resume.skills.tools,
-                    '领域方向': resume.skills.domains
-                };
-                for (const [cat, items] of Object.entries(skillMap)) {
-                    const div = createElement('div', { style: 'margin-bottom:14px;' });
-                    const strong = createElement('strong', {}, [cat]);
-                    const wrap = createElement('div', { className: 'flex-wrap', style: 'margin-top:4px;' });
-                    items.forEach(i => {
-                        wrap.appendChild(createElement('span', { className: 'badge' }, [i]));
-                    });
-                    div.append(strong, wrap);
-                    card.appendChild(div);
-                }
-
-                const progressDiv = createElement('div', { style: 'margin-top:16px; border-top:1px solid var(--border); padding-top:16px;' });
-                const row = createElement('div', { className: 'skill-row' });
-                const skillsProgress = [
-                    { label: 'Python / Flask', val: 80 },
-                    { label: 'JavaScript / Vue', val: 70 },
-                    { label: 'Java (学习)', val: 45 },
-                    { label: 'SQL / 数据库', val: 60 }
-                ];
-                skillsProgress.forEach(s => {
-                    const item = createElement('div', { className: 'skill-item' });
-                    const labelDiv = createElement('div', { className: 'skill-label' });
-                    const span1 = createElement('span', {}, [s.label]);
-                    const span2 = createElement('span', {}, [`${s.val}%`]);
-                    labelDiv.append(span1, span2);
-                    const progress = createElement('div', { className: 'progress' });
-                    const bar = createElement('div', { className: 'progress-bar', style: `width:${s.val}%;` });
-                    progress.appendChild(bar);
-                    item.append(labelDiv, progress);
-                    row.appendChild(item);
-                });
-                progressDiv.appendChild(row);
-                card.appendChild(progressDiv);
-
-                section.append(title, card);
-                return section;
-            }
-
-            function renderEducation() {
-                const section = createElement('section', { id: 'education', className: 'section' });
-                const title = createElement('h2', { className: 'section-title' }, ['🎓 教育 & 证书']);
-                const card = createElement('div', { className: 'card' });
-
-                resume.education.forEach(e => {
-                    const item = createElement('div', { className: 'edu-item' });
-                    const left = createElement('div', {});
-                    const strong = createElement('strong', {}, [`${e.degree} · ${e.school}`]);
-                    left.appendChild(strong);
-                    const right = createElement('div', { style: 'color:var(--text-secondary);' }, [`${e.period}  |  ${e
-                            .gpa}`]);
-                    const courseDiv = createElement('div', { style: 'width:100%;font-size:0.9rem;color:var(--text-secondary);' },
-                        [`先修：${e.courses}`]);
-                    item.append(left, right, courseDiv);
-                    card.appendChild(item);
-                });
-
-                const certTitle = createElement('strong', {}, ['📜 证书与荣誉']);
-                const ul = createElement('ul', { className: 'cert-list' });
-                resume.certificates.forEach(c => {
-                    const li = createElement('li', {}, [c]);
-                    ul.appendChild(li);
-                });
-                const certDiv = createElement('div', { style: 'margin-top:16px;' });
-                certDiv.append(certTitle, ul);
-                card.appendChild(certDiv);
-
-                section.append(title, card);
-                return section;
-            }
-
-            function renderContact() {
-                const section = createElement('section', { id: 'contact', className: 'section' });
-                const title = createElement('h2', { className: 'section-title' }, ['📬 联系方式']);
-                const card = createElement('div', { className: 'card', style: 'display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between;' });
-                const phone = createElement('span', {}, [`📞 ${resume.contact.phone}`]);
-                const emailSpan = createElement('span', { id: 'emailDisplay' }, [`📧 ${resume.contact.email}`]);
-                const gh = createElement('span', {}, [`🐙 `, createElement('a', { href: 'https://' + resume.contact.github,
-                    target: '_blank' }, [resume.contact.github])]);
-                const blog = createElement('span', {}, [`📝 ${resume.contact.blog}`]);
-                card.append(phone, emailSpan, gh, blog);
-                section.append(title, card);
-                return section;
-            }
-
-            function renderFooter() {
-                return createElement('footer', { className: 'footer' }, [resume.footer]);
-            }
+            // =============================================
+            //  渲染
+            // =============================================
+            const root = document.getElementById('resume-root');
 
             function render() {
-                app.innerHTML = '';
-                const fragments = [
-                    renderHero(),
-                    renderHighlights(),
-                    renderExperience(),
-                    renderProjects(),
-                    renderSkills(),
-                    renderEducation(),
-                    renderContact(),
-                    renderFooter()
-                ];
-                fragments.forEach(el => app.appendChild(el));
+                root.innerHTML = `
+                    <!-- ===== Hero ===== -->
+                    <section id="hero" class="hero">
+                        <div class="hero-text">
+                            <h1>${resume.name}</h1>
+                            <div class="subhead">${resume.title}</div>
+                            <p>${resume.summary}</p>
+                            <div class="badge-group">
+                                ${resume.skills.languages.slice(0,2).map(s => `<span class="badge primary">${s}</span>`).join('')}
+                                ${resume.skills.tools.slice(0,3).map(s => `<span class="badge">${s}</span>`).join('')}
+                                ${resume.skills.domains.slice(0,2).map(s => `<span class="badge">${s}</span>`).join('')}
+                            </div>
+                            <div class="contact-row">
+                                <a href="tel:${resume.contact.phone}">📞 ${resume.contact.phone}</a>
+                                <span id="emailCopy" style="cursor:pointer;">✉️ ${resume.contact.email}</span>
+                                <a href="${resume.contact.github}" target="_blank">🐙 GitHub</a>
+                            </div>
+                        </div>
+                        <div class="hero-stats">
+                            ${resume.stats.map(s => `<div class="stat-item"><div class="stat-num">${s.num}</div><div class="stat-label">${s.label}</div></div>`).join('')}
+                        </div>
+                    </section>
 
-                const copyBtn = document.getElementById('copyEmailBtn');
-                if (copyBtn) {
-                    copyBtn.addEventListener('click', function() {
-                        const email = resume.contact.email;
-                        if (navigator.clipboard) {
-                            navigator.clipboard.writeText(email).then(() => {
-                                alert('📧 邮箱已复制: ' + email);
-                            }).catch(() => fallbackCopy(email));
-                        } else {
-                            fallbackCopy(email);
+                    <!-- ===== Highlights ===== -->
+                    <section id="highlights">
+                        <div class="section-title">✦ 亮点成果</div>
+                        <div class="card-grid">
+                            ${resume.highlights.map(h => `<div class="card highlight-card">${h}</div>`).join('')}
+                        </div>
+                    </section>
+
+                    <!-- ===== Experience Tabs ===== -->
+                    <section id="exp">
+                        <div class="section-title">✦ 经历</div>
+                        <div class="tabs-bar" role="tablist">
+                            <button class="tab-btn active" role="tab" data-tab="exp-work">工作 / 实习</button>
+                            <button class="tab-btn" role="tab" data-tab="exp-badminton">🏸 羽毛球</button>
+                        </div>
+                        <div id="exp-work" class="tab-content active" role="tabpanel">
+                            ${resume.experience.map(exp => `
+                                <div class="exp-item">
+                                    <div class="exp-header">
+                                        <span>${exp.company}</span>
+                                        <span class="exp-sub">${exp.period}</span>
+                                    </div>
+                                    <div style="font-weight:600; font-size:0.95rem; margin:2px 0 4px; color: #b8abdd;">${exp.role}</div>
+                                    <ul class="exp-desc">${exp.details.map(d => `<li>${d}</li>`).join('')}</ul>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div id="exp-badminton" class="tab-content" role="tabpanel">
+                            <div class="card" style="margin-top:4px; padding:20px 24px;">
+                                <div style="font-size:1.1rem; font-weight:600; margin-bottom:6px; color: #d4c8ff;">🏸 暴力进攻型单打 · 校队副队长</div>
+                                <p style="margin-bottom:8px; color: #cfc5e8;">${resume.badminton}</p>
+                                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;">
+                                    <span class="badge">市级团体第二</span>
+                                    <span class="badge">单打季军</span>
+                                    <span class="badge">双打冠军</span>
+                                    <span class="badge">爆发力突出</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ===== Projects ===== -->
+                    <section id="projects">
+                        <div class="section-title">✦ 项目作品</div>
+                        <div class="card-grid">
+                            ${resume.projects.map(p => `
+                                <div class="card">
+                                    <div style="font-weight:700; font-size:1.05rem; color: #d4c8ff;">${p.name}</div>
+                                    <div style="font-size:0.8rem; color: #b8abdd; margin:6px 0 8px; display:flex; flex-wrap:wrap; gap:4px;">
+                                        ${p.tech.split(',').map(t => `<span class="skill-tag" style="background:rgba(160,130,255,0.06); padding:2px 12px;">${t.trim()}</span>`).join('')}
+                                    </div>
+                                    <div style="font-size:0.93rem; color: #cfc5e8;">${p.desc}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    <!-- ===== Skills ===== -->
+                    <section id="skills">
+                        <div class="section-title">✦ 技能矩阵</div>
+                        <div style="display:flex; flex-wrap:wrap; gap:20px 40px; background:rgba(30,20,60,0.30); padding:18px 22px; border-radius:24px; backdrop-filter:blur(4px); border:1px solid rgba(160,130,255,0.06);">
+                            <div class="skill-group"><strong>🗣 语言</strong><br>${resume.skills.languages.map(s => `<span class="skill-tag">${s}</span>`).join('')}</div>
+                            <div class="skill-group"><strong>🔧 工具</strong><br>${resume.skills.tools.map(s => `<span class="skill-tag">${s}</span>`).join('')}</div>
+                            <div class="skill-group"><strong>📊 领域</strong><br>${resume.skills.domains.map(s => `<span class="skill-tag">${s}</span>`).join('')}</div>
+                        </div>
+                    </section>
+
+                    <!-- ===== Education & Certs ===== -->
+                    <section id="edu">
+                        <div class="section-title">✦ 教育 · 证书</div>
+                        <div class="card-grid">
+                            <div class="card">
+                                <strong style="font-size:1.05rem; color: #d4c8ff;">${resume.education.school}</strong><br>
+                                <span style="font-weight:500; color: #b8abdd;">${resume.education.major}</span><br>
+                                <span style="font-size:0.9rem; color: #b8abdd;">${resume.education.detail}</span>
+                            </div>
+                            <div class="card">
+                                <strong style="color: #d4c8ff;">📜 证书 & 荣誉</strong>
+                                <ul style="margin-top:10px; list-style:disc; padding-left:20px; font-size:0.9rem; color: #cfc5e8;">
+                                    ${resume.certs.map(c => `<li style="margin-bottom:4px;">${c}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <footer>${resume.footer}</footer>
+                `;
+
+                // =============================================
+                //  交互绑定
+                // =============================================
+
+                // ---- Tabs ----
+                document.querySelectorAll('[role="tab"]').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const parent = this.closest('.tabs-bar');
+                        parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        const panelId = this.dataset.tab;
+                        document.querySelectorAll('.tab-content').forEach(p => p.classList.remove('active'));
+                        document.getElementById(panelId).classList.add('active');
+                    });
+                    btn.addEventListener('keydown', (e) => {
+                        const tabs = [...btn.closest('.tabs-bar').querySelectorAll('.tab-btn')];
+                        const idx = tabs.indexOf(btn);
+                        if (e.key === 'ArrowRight') {
+                            e.preventDefault();
+                            tabs[(idx + 1) % tabs.length]?.focus();
+                            tabs[(idx + 1) % tabs.length]?.click();
+                        }
+                        if (e.key === 'ArrowLeft') {
+                            e.preventDefault();
+                            tabs[(idx - 1 + tabs.length) % tabs.length]?.focus();
+                            tabs[(idx - 1 + tabs.length) % tabs.length]?.click();
                         }
                     });
+                });
+
+                // ---- 邮箱复制 ----
+                document.getElementById('emailCopy')?.addEventListener('click', function() {
+                    const email = '3628690779@qq.com';
+                    navigator.clipboard?.writeText(email).then(() => {
+                        const orig = this.innerText;
+                        this.innerText = '✅ 已复制';
+                        setTimeout(() => this.innerText = orig, 1800);
+                    }).catch(() => alert('请手动复制: ' + email));
+                });
+
+                // ---- 返回顶部 ----
+                const backBtn = document.getElementById('backTop');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 400) backBtn.classList.add('visible');
+                    else backBtn.classList.remove('visible');
+                });
+                backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+                // ---- 打印 ----
+                document.getElementById('printBtn').addEventListener('click', () => window.print());
+
+                // ---- 深浅色 ----
+                const themeBtn = document.getElementById('themeToggle');
+                const isDark = () => document.body.classList.contains('dark');
+                themeBtn.addEventListener('click', () => {
+                    document.body.classList.toggle('dark');
+                    themeBtn.textContent = isDark() ? '☀️' : '🌙';
+                });
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.body.classList.add('dark');
+                    themeBtn.textContent = '☀️';
+                } else {
+                    document.body.classList.remove('dark');
+                    themeBtn.textContent = '🌙';
                 }
-            }
-
-            function fallbackCopy(text) {
-                const ta = document.createElement('textarea');
-                ta.value = text;
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-                ta.remove();
-                alert('📧 邮箱已复制: ' + text);
-            }
-
-            // ============================================================
-            //  交互控制
-            // ============================================================
-
-            function initTheme() {
-                const toggle = document.getElementById('themeToggle');
-                const html = document.documentElement;
-                const saved = localStorage.getItem('theme');
-                if (saved === 'dark') {
-                    html.setAttribute('data-theme', 'dark');
-                } else if (saved === 'light') {
-                    html.removeAttribute('data-theme');
-                } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    html.setAttribute('data-theme', 'dark');
-                }
-                toggle.addEventListener('click', function() {
-                    const isDark = html.getAttribute('data-theme') === 'dark';
-                    if (isDark) {
-                        html.removeAttribute('data-theme');
-                        localStorage.setItem('theme', 'light');
-                    } else {
-                        html.setAttribute('data-theme', 'dark');
-                        localStorage.setItem('theme', 'dark');
-                    }
-                });
-            }
-
-            function initPrint() {
-                document.getElementById('printBtn').addEventListener('click', function() {
-                    window.print();
-                });
-            }
-
-            function initBackTop() {
-                const btn = document.getElementById('backTop');
-                window.addEventListener('scroll', function() {
-                    if (window.scrollY > 400) {
-                        btn.classList.add('visible');
-                    } else {
-                        btn.classList.remove('visible');
-                    }
-                });
-                btn.addEventListener('click', function() {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
             }
 
             render();
-            initTheme();
-            initPrint();
-            initBackTop();
-
         })();
     </script>
 </body>
