@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张宇航 · 全栈开发者</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #0b2b40;
+            --primary-light: #2a5775;
+            --accent: #d45c3a;
+            --accent-light: #e88464;
+            --bg: #f2f6fb;
+            --surface: #ffffff;
+            --text: #1e2a36;
+            --text-secondary: #3d5268;
+            --border: #d9e2ec;
+            --shadow: 0 10px 30px rgba(0, 20, 40, 0.06);
+            --radius: 16px;
+            --transition: 0.25s ease;
+            --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            --max-width: 1140px;
+        }
+        [data-theme="dark"] {
+            --bg: #101a24;
+            --surface: #1d2a38;
+            --text: #e4ecf5;
+            --text-secondary: #b2cadd;
+            --border: #2e4055;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            --primary-light: #5f8db0;
+            --accent: #e88464;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background var(--transition), color var(--transition);
+            padding: 80px 20px 40px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+        a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        a:hover {
+            color: var(--accent);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(14px);
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 999;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.02);
+            transition: background var(--transition), border var(--transition);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        .navbar-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .navbar-nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            transition: all var(--transition);
+        }
+        .navbar-nav a:hover {
+            background: var(--border);
+            color: var(--primary);
+        }
+        .nav-actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .nav-actions button {
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            background: var(--surface);
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .nav-actions button:hover {
+            border-color: var(--primary-light);
+            color: var(--primary);
+            background: var(--bg);
+        }
+        @media print {
+            .navbar {
+                display: none;
+            }
+            body {
+                padding: 16px;
+                background: white;
+            }
+            .card,
+            .section {
+                box-shadow: none !important;
+                border: 1px solid #ccc;
+            }
+            .tab-btn {
+                background: #f0f0f0 !important;
+            }
+            [data-theme="dark"] {
+                --bg: white;
+                --surface: white;
+                --text: black;
+                --text-secondary: #333;
+                --border: #ccc;
+            }
+        }
+
+        .section {
+            margin-top: 48px;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--border), transparent);
+        }
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 44px rgba(0, 20, 40, 0.07);
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .flex-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+        }
+        .badge {
+            background: var(--border);
+            color: var(--text-secondary);
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            transition: background var(--transition);
+        }
+        .badge-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .badge-accent {
+            background: var(--accent);
+            color: white;
+        }
+
+        .hero {
+            margin-top: 8px;
+            padding: 34px 30px;
+            background: linear-gradient(145deg, var(--surface), var(--bg));
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--primary);
+        }
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 10px 0 16px;
+        }
+        .hero .badge-group {
+            margin: 12px 0 16px;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .btn-primary {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-light);
+            color: white;
+        }
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border);
+        }
+        .btn-outline:hover {
+            border-color: var(--primary-light);
+            background: var(--bg);
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+        .highlight-item {
+            background: var(--surface);
+            padding: 18px 12px;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+        }
+        .highlight-item:hover {
+            transform: scale(1.02);
+            border-color: var(--primary-light);
+        }
+        .highlight-item .number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            line-height: 1.2;
+        }
+        .highlight-item .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .tabs {
+            margin-top: 8px;
+        }
+        .tab-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 24px;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 10px 22px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all var(--transition);
+            border-radius: 8px 8px 0 0;
+        }
+        .tab-btn:hover {
+            background: var(--border);
+        }
+        .tab-btn[aria-selected="true"] {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+            background: var(--surface);
+        }
+        .tab-panel {
+            display: none;
+            animation: fadeUp 0.25s ease;
+        }
+        .tab-panel[aria-hidden="false"] {
+            display: block;
+        }
+        @keyframes fadeUp {
+            0% {
+                opacity: 0.3;
+                transform: translateY(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .timeline-item {
+            margin-bottom: 24px;
+            padding-left: 8px;
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+        }
+        .timeline-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .timeline-item .meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+        .timeline-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .timeline-item li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        .timeline-item li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .project-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 20px;
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.06);
+        }
+        .project-card .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 12px;
+        }
+        .project-card .tech span {
+            background: var(--border);
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .project-card .result {
+            flex: 1;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+        .project-card .link {
+            margin-top: 12px;
+            font-weight: 500;
+        }
+
+        .skill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px 40px;
+            margin: 8px 0;
+        }
+        .skill-item {
+            flex: 1 0 180px;
+        }
+        .skill-item .skill-label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .progress {
+            width: 100%;
+            height: 6px;
+            background: var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            border-radius: 20px;
+            width: 0%;
+        }
+
+        .edu-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            gap: 6px 12px;
+        }
+        .edu-item:last-child {
+            border: none;
+        }
+        .cert-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+        }
+        .cert-list li {
+            position: relative;
+            padding-left: 18px;
+        }
+        .cert-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding: 24px 0 8px;
+            border-top: 1px solid var(--border);
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .back-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 8px 18px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+            transition: all var(--transition);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .back-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .back-top:hover {
+            background: var(--primary-light);
+            transform: scale(1.04);
+        }
+
+        @media (max-width: 640px) {
+            .navbar {
+                padding: 0 12px;
+                flex-wrap: wrap;
+                height: auto;
+                min-height: 56px;
+            }
+            .navbar-nav a {
+                font-size: 0.72rem;
+                padding: 2px 6px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .card {
+                padding: 16px;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .highlight-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero-actions .btn {
+                font-size: 0.8rem;
+                padding: 6px 14px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" role="navigation" aria-label="主导航">
+        <div class="navbar-brand">张宇航</div>
+        <div class="navbar-nav">
+            <a href="#hero">首页</a>
+            <a href="#highlights">亮点</a>
+            <a href="#experience">经历</a>
+            <a href="#projects">项目</a>
+            <a href="#skills">技能</a>
+            <a href="#education">教育</a>
+        </div>
+        <div class="nav-actions">
+            <button id="themeToggle" aria-label="切换深色/浅色模式">🌓 主题</button>
+            <button id="printBtn" aria-label="打印简历">🖨️ 打印</button>
+        </div>
+    </nav>
+
+    <div class="container" id="app"></div>
+
+    <button class="back-top" id="backTop" aria-label="返回顶部">↑ 顶部</button>
+
+    <script>
+        (function() {
+            // ============================================================
+            //  简历数据 (最新版本 —— 含未来期望)
+            // ============================================================
+            const resume = {
+                name: '张宇航',
+                title: '全栈开发者 · 准大一 · 未来技术探索者',
+                contact: {
+                    phone: '15861936143',
+                    email: 'yuhang.zhang@email.com',
+                    github: 'github.com/yuhang-dev',
+                    blog: '掘金/知乎 (@yuhang_dev)'
+                },
+                hero: {
+                    summary: '淮安大学计算机科学与技术准大一新生，高中阶段已独立完成3个全栈项目，代码量超8000行。'
+                        + '热爱用技术解决实际问题，具备从需求分析到部署上线的完整项目经验。'
+                        + '期待在实习与科研中深入后端工程、高并发架构与开源社区，成长为有工程思维的全栈开发者。',
+                    keywords: ['Python', 'Flask', 'Vue.js', 'MySQL', 'Git', 'Django', 'Linux']
+                },
+                highlights: [
+                    { number: '3', label: '独立全栈项目' },
+                    { number: '8000+', label: '代码行数' },
+                    { number: '320+', label: '校园平台用户' },
+                    { number: '2万+', label: '技术文章阅读' }
+                ],
+                experience: {
+                    work: [{
+                        title: '【未来期望】前端/全栈开发实习生',
+                        company: '互联网科技公司 / 创业团队',
+                        period: '2026年暑假起',
+                        details: [
+                            '期望参与真实业务场景的Web应用开发，将全栈项目经验迁移至企业级工程实践，完成从需求评审到上线的完整闭环。',
+                            '目标独立承担一个完整模块（后台系统/数据看板/小程序功能），熟悉Git Flow、Code Review与CI/CD协作流程。',
+                            '希望接触Redis缓存、消息队列或微服务架构，在导师指导下完成至少一次性能调优或数据库优化任务。',
+                            '计划实习结束产出技术总结与可复用组件文档，沉淀对互联网研发流程与工程文化的理解。'
+                        ]
+                    }, {
+                        title: '【未来期望】校园创新实验室 / 科研助理',
+                        company: '淮安大学 · 创新实验室',
+                        period: '大学期间持续',
+                        details: [
+                            '期望参与物联网、智慧校园或教育数据分析等方向项目，将技术应用于校园与社会实际问题。',
+                            '目标在导师指导下参与省级/国家级大创项目，承担核心开发或数据分析角色，积累学术写作与申报经验。',
+                            '计划以第一作者或主要贡献者完成至少一篇技术论文或软著/专利申报，为升学与科研之路奠基。',
+                            '希望通过实验室平台拓展校企合作与技术交流，构建行业视野与人脉资源。'
+                        ]
+                    }, {
+                        title: '【未来期望】开源贡献者 & 技术博主',
+                        company: '开源社区 / 个人品牌',
+                        period: '长期持续',
+                        details: [
+                            '计划运营个人技术博客与知乎专栏，保持每月至少2篇高质量技术文章，涵盖全栈开发、项目复盘与学习路径。',
+                            '目标大学期间将博客月均UV提升至2000+，成为技术社区有影响力的创作者。',
+                            '积极参与开源社区，从提交Issue和PR起步，期望毕业前成为至少3个开源项目的Contributor。',
+                            '通过技术写作与开源参与建立个人技术品牌，形成差异化的升学与求职竞争力。'
+                        ]
+                    }],
+                    campus: []
+                },
+                projects: [{
+                    name: '校园二手书籍交易平台',
+                    tech: ['Flask', 'SQLite', 'Bootstrap', 'Session认证'],
+                    result: '独立开发全栈平台，320+注册用户，850+书籍发布，120+交易完成。开源获40+ star，被校学生会推荐。',
+                    link: '#'
+                }, {
+                    name: '番茄时钟 + 任务看板',
+                    tech: ['Vue.js', 'Flask', 'localStorage', 'RESTful API'],
+                    result: '轻量级效率工具，10+同学日常使用，迭代3个版本，用户留存率60%以上，GitHub访问200+次。',
+                    link: '#'
+                }, {
+                    name: '高中科技创新社官网',
+                    tech: ['Django', 'MySQL', 'Django Admin', '图片懒加载'],
+                    result: '主导官网改版，后台管理效率提升70%，首屏加载从3.2s降至1.5s，招新人数同比增长40%。',
+                    link: '#'
+                }],
+                skills: {
+                    languages: ['Python (熟练)', 'JavaScript (熟练)', 'Java (基础)', 'SQL (基础)'],
+                    frameworks: ['Flask', 'Django', 'Vue.js', 'Bootstrap', 'RESTful API'],
+                    tools: ['MySQL', 'SQLite', 'Git', 'Linux基础', 'VS Code'],
+                    domains: ['全栈开发', '前端工程', '后端API', '技术写作']
+                },
+                education: [{
+                    degree: '计算机科学与技术 本科 (准大一)',
+                    school: '淮安大学',
+                    period: '2026.09 入学',
+                    gpa: '高考数学135 · 英语138',
+                    courses: '先修: Python, 数据库, 数据结构与算法 (在线课程)'
+                }],
+                certificates: [
+                    'NOIP 省级二等奖 (2024)',
+                    'Python三级 (中国电子学会, 2025)',
+                    '计算机等级考试二级Python (优秀, 2025)',
+                    '校三好学生 (2024, 2025)',
+                    '校级科技创新大赛一等奖 (2025)'
+                ],
+                footer: '© 2026 张宇航 · 简历最后更新 2026.08 · 开放实习与科研合作'
+            };
+
+            // ============================================================
+            //  渲染引擎
+            // ============================================================
+            const app = document.getElementById('app');
+
+            function createElement(tag, attrs = {}, children = []) {
+                const el = document.createElement(tag);
+                for (const [key, val] of Object.entries(attrs)) {
+                    if (key === 'className') el.className = val;
+                    else if (key === 'innerHTML') el.innerHTML = val;
+                    else el.setAttribute(key, val);
+                }
+                for (const child of children) {
+                    if (typeof child === 'string') el.appendChild(document.createTextNode(child));
+                    else if (child instanceof Node) el.appendChild(child);
+                }
+                return el;
+            }
+
+            function renderHero() {
+                const section = createElement('section', { id: 'hero', className: 'hero' });
+                const h1 = createElement('h1', {}, [resume.name]);
+                const subtitle = createElement('p', { style: 'font-weight:500;color:var(--text-secondary);' }, [resume.title]);
+                const summary = createElement('p', {}, [resume.hero.summary]);
+                const badgeGroup = createElement('div', { className: 'badge-group flex-wrap' });
+                resume.hero.keywords.forEach(k => {
+                    badgeGroup.appendChild(createElement('span', { className: 'badge' }, [k]));
+                });
+                const actions = createElement('div', { className: 'hero-actions' });
+                const contactBtn = createElement('a', { className: 'btn btn-primary', href: '#contact' }, ['📧 联系我']);
+                const copyBtn = createElement('button', { className: 'btn btn-outline', id: 'copyEmailBtn' }, ['📋 复制邮箱']);
+                const githubLink = createElement('a', { className: 'btn btn-outline', href: 'https://' + resume.contact.github,
+                        target: '_blank' }, ['🐙 GitHub']);
+                const blogLink = createElement('a', { className: 'btn btn-outline', href: '#', target: '_blank' }, ['📝 博客']);
+                actions.append(contactBtn, copyBtn, githubLink, blogLink);
+                section.append(h1, subtitle, summary, badgeGroup, actions);
+                return section;
+            }
+
+            function renderHighlights() {
+                const section = createElement('section', { id: 'highlights', className: 'section' });
+                const title = createElement('h2', { className: 'section-title' }, ['✨ 亮点成果']);
+                const grid = createElement('div', { className: 'highlight-grid' });
+                resume.highlights.forEach(h => {
+                    const item = createElement('div', { className: 'highlight-item' });
+                    const num = createElement('span', { className: 'number' }, [h.number]);
+                    const label = createElement('span', { className: 'label' }, [h.label]);
+                    item.append(num, label);
+                    grid.appendChild(item);
+                });
+                section.append(title, grid);
+                return section;
+            }
+
+            function renderTabs(panels, groupId) {
+                if (!panels || panels.length === 0) return null;
+                const wrapper = createElement('div', { className: 'tabs' });
+                const bar = createElement('div', { className: 'tab-bar' });
+                const panelsContainer = createElement('div');
+
+                panels.forEach((p, idx) => {
+                    const id = `${groupId}-${idx}`;
+                    const label = p.label || p.title || `标签${idx+1}`;
+                    const btn = createElement('button', {
+                        className: 'tab-btn',
+                        role: 'tab',
+                        'aria-selected': idx === 0 ? 'true' : 'false',
+                        'aria-controls': id,
+                        id: `tab-${id}`
+                    }, [label]);
+                    bar.appendChild(btn);
+
+                    const panel = createElement('div', {
+                        className: 'tab-panel',
+                        role: 'tabpanel',
+                        id: id,
+                        'aria-hidden': idx === 0 ? 'false' : 'true',
+                        'aria-labelledby': `tab-${id}`
+                    });
+
+                    if (p.type === 'experience') {
+                        p.items.forEach(item => {
+                            const timeline = createElement('div', { className: 'timeline-item' });
+                            const h3 = createElement('h3', {}, [item.title]);
+                            const meta = createElement('div', { className: 'meta' }, [`${item.company} · ${item
+                                    .period}`]);
+                            const ul = createElement('ul');
+                            item.details.forEach(d => {
+                                const li = createElement('li', {}, [d]);
+                                ul.appendChild(li);
+                            });
+                            timeline.append(h3, meta, ul);
+                            panel.appendChild(timeline);
+                        });
+                    } else if (p.type === 'projects') {
+                        const grid = createElement('div', { className: 'grid-2' });
+                        p.items.forEach(proj => {
+                            const card = createElement('div', { className: 'project-card' });
+                            const name = createElement('h3', {}, [proj.name]);
+                            const techDiv = createElement('div', { className: 'tech' });
+                            proj.tech.forEach(t => {
+                                techDiv.appendChild(createElement('span', {}, [t]));
+                            });
+                            const resultP = createElement('div', { className: 'result' }, [proj.result]);
+                            const link = createElement('div', { className: 'link' });
+                            const a = createElement('a', { href: proj.link, target: '_blank' }, ['查看详情 →']);
+                            link.appendChild(a);
+                            card.append(name, techDiv, resultP, link);
+                            grid.appendChild(card);
+                        });
+                        panel.appendChild(grid);
+                    }
+                    panelsContainer.appendChild(panel);
+                });
+
+                wrapper.append(bar, panelsContainer);
+
+                const btns = wrapper.querySelectorAll('.tab-btn');
+                const panelsList = wrapper.querySelectorAll('.tab-panel');
+                btns.forEach((btn, idx) => {
+                    btn.addEventListener('click', function(e) {
+                        btns.forEach(b => b.setAttribute('aria-selected', 'false'));
+                        panelsList.forEach(p => p.setAttribute('aria-hidden', 'true'));
+                        this.setAttribute('aria-selected', 'true');
+                        panelsList[idx].setAttribute('aria-hidden', 'false');
+                    });
+                    btn.addEventListener('keydown', function(e) {
+                        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                            e.preventDefault();
+                            const dir = e.key === 'ArrowRight' ? 1 : -1;
+                            let newIdx = idx + dir;
+                            if (newIdx < 0) newIdx = btns.length - 1;
+                            if (newIdx >= btns.length) newIdx = 0;
+                            btns[newIdx].click();
+                            btns[newIdx].focus();
+                        }
+                    });
+                });
+                return wrapper;
+            }
+
+            function renderExperience() {
+                const section = createElement('section', { id: 'experience', className: 'section' });
+                const title = createElement('h2', { className: 'section-title' }, ['📌 经历与未来期望']);
+                const panels = [
+                    { label: '💼 实习期望', type: 'experience', items: resume.experience.work }
+                ];
+                const tabs = renderTabs(panels, 'exp');
+                section.append(title, tabs);
+                return section;
+            }
+
+            function renderProjects() {
+                const section = createElement('section', { id: 'projects', className: 'section' });
+                const title = createElement('h2', { className: 'section-title' }, ['📂 项目经历']);
+                const panels = [{ label: '📁 高中项目', type: 'projects', items: resume.projects }];
+                const tabs = renderTabs(panels, 'proj');
+                section.append(title, tabs);
+                return section;
+            }
+
+            function renderSkills() {
+                const section = createElement('section', { id: 'skills', className: 'section' });
+                const title = createElement('h2', { className: 'section-title' }, ['⚙️ 技能矩阵']);
+                const card = createElement('div', { className: 'card' });
+
+                const skillMap = {
+                    '编程语言': resume.skills.languages,
+                    '框架/库': resume.skills.frameworks,
+                    '工具/数据库': resume.skills.tools,
+                    '领域方向': resume.skills.domains
+                };
+                for (const [cat, items] of Object.entries(skillMap)) {
+                    const div = createElement('div', { style: 'margin-bottom:14px;' });
+                    const strong = createElement('strong', {}, [cat]);
+                    const wrap = createElement('div', { className: 'flex-wrap', style: 'margin-top:4px;' });
+                    items.forEach(i => {
+                        wrap.appendChild(createElement('span', { className: 'badge' }, [i]));
+                    });
+                    div.append(strong, wrap);
+                    card.appendChild(div);
+                }
+
+                const progressDiv = createElement('div', { style: 'margin-top:16px; border-top:1px solid var(--border); padding-top:16px;' });
+                const row = createElement('div', { className: 'skill-row' });
+                const skillsProgress = [
+                    { label: 'Python / Flask', val: 80 },
+                    { label: 'JavaScript / Vue', val: 70 },
+                    { label: 'Java (学习)', val: 45 },
+                    { label: 'SQL / 数据库', val: 60 }
+                ];
+                skillsProgress.forEach(s => {
+                    const item = createElement('div', { className: 'skill-item' });
+                    const labelDiv = createElement('div', { className: 'skill-label' });
+                    const span1 = createElement('span', {}, [s.label]);
+                    const span2 = createElement('span', {}, [`${s.val}%`]);
+                    labelDiv.append(span1, span2);
+                    const progress = createElement('div', { className: 'progress' });
+                    const bar = createElement('div', { className: 'progress-bar', style: `width:${s.val}%;` });
+                    progress.appendChild(bar);
+                    item.append(labelDiv, progress);
+                    row.appendChild(item);
+                });
+                progressDiv.appendChild(row);
+                card.appendChild(progressDiv);
+
+                section.append(title, card);
+                return section;
+            }
+
+            function renderEducation() {
+                const section = createElement('section', { id: 'education', className: 'section' });
+                const title = createElement('h2', { className: 'section-title' }, ['🎓 教育 & 证书']);
+                const card = createElement('div', { className: 'card' });
+
+                resume.education.forEach(e => {
+                    const item = createElement('div', { className: 'edu-item' });
+                    const left = createElement('div', {});
+                    const strong = createElement('strong', {}, [`${e.degree} · ${e.school}`]);
+                    left.appendChild(strong);
+                    const right = createElement('div', { style: 'color:var(--text-secondary);' }, [`${e.period}  |  ${e
+                            .gpa}`]);
+                    const courseDiv = createElement('div', { style: 'width:100%;font-size:0.9rem;color:var(--text-secondary);' },
+                        [`先修：${e.courses}`]);
+                    item.append(left, right, courseDiv);
+                    card.appendChild(item);
+                });
+
+                const certTitle = createElement('strong', {}, ['📜 证书与荣誉']);
+                const ul = createElement('ul', { className: 'cert-list' });
+                resume.certificates.forEach(c => {
+                    const li = createElement('li', {}, [c]);
+                    ul.appendChild(li);
+                });
+                const certDiv = createElement('div', { style: 'margin-top:16px;' });
+                certDiv.append(certTitle, ul);
+                card.appendChild(certDiv);
+
+                section.append(title, card);
+                return section;
+            }
+
+            function renderContact() {
+                const section = createElement('section', { id: 'contact', className: 'section' });
+                const title = createElement('h2', { className: 'section-title' }, ['📬 联系方式']);
+                const card = createElement('div', { className: 'card', style: 'display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between;' });
+                const phone = createElement('span', {}, [`📞 ${resume.contact.phone}`]);
+                const emailSpan = createElement('span', { id: 'emailDisplay' }, [`📧 ${resume.contact.email}`]);
+                const gh = createElement('span', {}, [`🐙 `, createElement('a', { href: 'https://' + resume.contact.github,
+                    target: '_blank' }, [resume.contact.github])]);
+                const blog = createElement('span', {}, [`📝 ${resume.contact.blog}`]);
+                card.append(phone, emailSpan, gh, blog);
+                section.append(title, card);
+                return section;
+            }
+
+            function renderFooter() {
+                return createElement('footer', { className: 'footer' }, [resume.footer]);
+            }
+
+            function render() {
+                app.innerHTML = '';
+                const fragments = [
+                    renderHero(),
+                    renderHighlights(),
+                    renderExperience(),
+                    renderProjects(),
+                    renderSkills(),
+                    renderEducation(),
+                    renderContact(),
+                    renderFooter()
+                ];
+                fragments.forEach(el => app.appendChild(el));
+
+                const copyBtn = document.getElementById('copyEmailBtn');
+                if (copyBtn) {
+                    copyBtn.addEventListener('click', function() {
+                        const email = resume.contact.email;
+                        if (navigator.clipboard) {
+                            navigator.clipboard.writeText(email).then(() => {
+                                alert('📧 邮箱已复制: ' + email);
+                            }).catch(() => fallbackCopy(email));
+                        } else {
+                            fallbackCopy(email);
+                        }
+                    });
+                }
+            }
+
+            function fallbackCopy(text) {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                ta.remove();
+                alert('📧 邮箱已复制: ' + text);
+            }
+
+            // ============================================================
+            //  交互控制
+            // ============================================================
+
+            function initTheme() {
+                const toggle = document.getElementById('themeToggle');
+                const html = document.documentElement;
+                const saved = localStorage.getItem('theme');
+                if (saved === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                } else if (saved === 'light') {
+                    html.removeAttribute('data-theme');
+                } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    html.setAttribute('data-theme', 'dark');
+                }
+                toggle.addEventListener('click', function() {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    if (isDark) {
+                        html.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        html.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                });
+            }
+
+            function initPrint() {
+                document.getElementById('printBtn').addEventListener('click', function() {
+                    window.print();
+                });
+            }
+
+            function initBackTop() {
+                const btn = document.getElementById('backTop');
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 400) {
+                        btn.classList.add('visible');
+                    } else {
+                        btn.classList.remove('visible');
+                    }
+                });
+                btn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            render();
+            initTheme();
+            initPrint();
+            initBackTop();
+
+        })();
+    </script>
+</body>
+</html>
