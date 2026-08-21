@@ -1,1003 +1,464 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>张宇航 · 数据分析简历</title>
-    <style>
-        /* ===== 全局重置 ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <title>张宇航 · Bento 3D 简历</title>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
-            background: #0b0710;
-            color: #e2d9f0;
-            line-height: 1.6;
-            transition: background 0.3s, color 0.3s;
-            padding: 20px 16px 40px;
-            min-height: 100vh;
-            position: relative;
-        }
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        /* ===== 梦幻星空背景 ===== */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: radial-gradient(ellipse at 20% 50%, #1a1040 0%, #0b0710 70%);
-        }
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image:
-                radial-gradient(2px 2px at 20px 30px, #c8b6ff, transparent),
-                radial-gradient(2px 2px at 40px 70px, #a78bfa, transparent),
-                radial-gradient(2px 2px at 50px 160px, #c4b5fd, transparent),
-                radial-gradient(2px 2px at 90px 40px, #ddd6fe, transparent),
-                radial-gradient(2px 2px at 130px 80px, #a78bfa, transparent),
-                radial-gradient(2px 2px at 160px 30px, #c8b6ff, transparent),
-                radial-gradient(1px 1px at 200px 120px, #e0d7ff, transparent),
-                radial-gradient(1px 1px at 250px 50px, #b9a6f5, transparent),
-                radial-gradient(1px 1px at 300px 180px, #d4c8ff, transparent),
-                radial-gradient(2px 2px at 350px 90px, #c4b5fd, transparent),
-                radial-gradient(2px 2px at 420px 30px, #a78bfa, transparent),
-                radial-gradient(1px 1px at 480px 140px, #ddd6fe, transparent),
-                radial-gradient(2px 2px at 540px 60px, #c8b6ff, transparent),
-                radial-gradient(1px 1px at 600px 200px, #b9a6f5, transparent),
-                radial-gradient(2px 2px at 660px 100px, #d4c8ff, transparent),
-                radial-gradient(1px 1px at 720px 40px, #c4b5fd, transparent),
-                radial-gradient(2px 2px at 780px 160px, #a78bfa, transparent),
-                radial-gradient(1px 1px at 840px 70px, #ddd6fe, transparent),
-                radial-gradient(2px 2px at 900px 130px, #c8b6ff, transparent),
-                radial-gradient(1px 1px at 960px 50px, #b9a6f5, transparent);
-            background-size: 200px 200px;
-            opacity: 0.6;
-            pointer-events: none;
-        }
+  <!-- Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-        /* ===== 深色模式（梦幻紫） ===== */
-        body.dark {
-            background: #0b0710;
-            color: #e2d9f0;
-        }
-        body.dark::before {
-            background: radial-gradient(ellipse at 20% 50%, #1a1040 0%, #0b0710 70%);
-        }
+  <!-- Vanilla-Tilt.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
-        /* ===== 亮色模式（梦幻浅紫） ===== */
-        body:not(.dark) {
-            background: #f4f0ff;
-            color: #1e1a2e;
-        }
-        body:not(.dark)::before {
-            background: radial-gradient(ellipse at 20% 50%, #e8e0ff 0%, #f4f0ff 70%);
-        }
-        body:not(.dark)::after {
-            opacity: 0.3;
-        }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background-color: #05020a;
+      min-height: 100vh;
+      padding: 1.25rem;
+      position: relative;
+      overflow-x: hidden;
+      color: #e8e4f0;
+    }
 
-        .container {
-            max-width: 1140px;
-            margin: 0 auto;
-            background: rgba(20, 14, 40, 0.65);
-            backdrop-filter: blur(14px) saturate(1.2);
-            -webkit-backdrop-filter: blur(14px) saturate(1.2);
-            border-radius: 40px;
-            padding: 28px 34px 36px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(160, 130, 255, 0.10);
-            transition: background 0.3s, box-shadow 0.3s;
-            position: relative;
-            z-index: 1;
-        }
-        body:not(.dark) .container {
-            background: rgba(245, 240, 255, 0.70);
-            backdrop-filter: blur(14px) saturate(1.2);
-            -webkit-backdrop-filter: blur(14px) saturate(1.2);
-            box-shadow: 0 30px 80px rgba(80, 60, 180, 0.10);
-            border: 1px solid rgba(160, 130, 255, 0.20);
-        }
+    /* --- 梦幻星空 + 紫色光晕 (区域性) --- */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 10% 20%, rgba(120, 80, 255, 0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 90% 80%, rgba(180, 90, 255, 0.20) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(80, 40, 200, 0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
 
-        @media (max-width: 640px) {
-            .container {
-                padding: 16px 14px;
-                border-radius: 28px;
-            }
-        }
+    /* 星空粒子 (纯CSS) */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        radial-gradient(1.5px 1.5px at 12% 8%, rgba(210, 180, 255, 0.6), transparent),
+        radial-gradient(1.5px 1.5px at 28% 45%, rgba(190, 160, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 44% 72%, rgba(220, 200, 255, 0.4), transparent),
+        radial-gradient(2px 2px at 63% 18%, rgba(180, 150, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 78% 55%, rgba(200, 170, 255, 0.3), transparent),
+        radial-gradient(1.5px 1.5px at 92% 30%, rgba(210, 180, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 18% 88%, rgba(190, 160, 255, 0.4), transparent),
+        radial-gradient(1.5px 1.5px at 55% 92%, rgba(220, 200, 255, 0.3), transparent),
+        radial-gradient(1px 1px at 82% 78%, rgba(180, 150, 255, 0.5), transparent),
+        radial-gradient(1.5px 1.5px at 35% 30%, rgba(200, 170, 255, 0.4), transparent);
+      background-size: 220px 220px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
-        /* ===== 导航栏 ===== */
-        nav {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px 0 16px;
-            border-bottom: 1px solid rgba(160, 130, 255, 0.12);
-            margin-bottom: 20px;
-        }
-        body:not(.dark) nav {
-            border-bottom-color: rgba(100, 70, 200, 0.12);
-        }
+    .bento-grid {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
 
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            flex-wrap: wrap;
-        }
-        .nav-name {
-            font-weight: 700;
-            font-size: 1.6rem;
-            letter-spacing: 0.5px;
-            background: linear-gradient(135deg, #a78bfa, #7c3aed, #6d28d9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 40px rgba(120, 80, 240, 0.15);
-        }
-        body:not(.dark) .nav-name {
-            background: linear-gradient(135deg, #6d28d9, #7c3aed, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        .nav-links a {
-            color: #b8abdd;
-            transition: 0.2s;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 4px;
-        }
-        body:not(.dark) .nav-links a {
-            color: #4a3a6a;
-        }
-        .nav-links a:hover {
-            color: #a78bfa;
-            border-bottom-color: #a78bfa;
-        }
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .icon-btn {
-            background: rgba(160, 130, 255, 0.08);
-            border: 1px solid rgba(160, 130, 255, 0.12);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 40px;
-            transition: 0.2s;
-            color: #c8b6ff;
-            backdrop-filter: blur(4px);
-        }
-        body:not(.dark) .icon-btn {
-            color: #4a3a6a;
-            background: rgba(100, 70, 200, 0.06);
-            border-color: rgba(100, 70, 200, 0.10);
-        }
-        .icon-btn:hover {
-            background: rgba(160, 130, 255, 0.18);
-            transform: scale(1.03);
-        }
-        @media (max-width: 600px) {
-            .nav-links {
-                display: none;
-            }
-        }
+    /* --- Bento 便当盒卡片 --- */
+    .bento-card {
+      background: rgba(20, 15, 35, 0.75);
+      backdrop-filter: blur(14px) saturate(1.3);
+      -webkit-backdrop-filter: blur(14px) saturate(1.3);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 2rem;
+      padding: 1.5rem;
+      box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.6);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      will-change: transform;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
 
-        /* ===== Hero ===== */
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 32px;
-            padding: 12px 0 24px;
-            align-items: center;
-        }
-        .hero-text {
-            flex: 2;
-            min-width: 240px;
-        }
-        .hero-text h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            line-height: 1.2;
-            background: linear-gradient(135deg, #e2d9f0, #c8b6ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        body:not(.dark) .hero-text h1 {
-            background: linear-gradient(135deg, #2d1b69, #6d28d9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero-text .subhead {
-            font-size: 1rem;
-            color: #b8abdd;
-            margin: 6px 0 10px;
-            font-weight: 400;
-        }
-        body:not(.dark) .hero-text .subhead {
-            color: #5a4a7a;
-        }
-        .hero-text p {
-            margin: 10px 0 14px;
-            color: #cfc5e8;
-            max-width: 620px;
-        }
-        body:not(.dark) .hero-text p {
-            color: #3a2a5a;
-        }
-        .badge-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 8px 0 16px;
-        }
-        .badge {
-            background: rgba(160, 130, 255, 0.12);
-            border: 1px solid rgba(160, 130, 255, 0.15);
-            color: #c8b6ff;
-            padding: 4px 16px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: 0.2s;
-            backdrop-filter: blur(4px);
-        }
-        body:not(.dark) .badge {
-            background: rgba(100, 70, 200, 0.06);
-            border-color: rgba(100, 70, 200, 0.12);
-            color: #4a3a6a;
-        }
-        .badge.primary {
-            background: linear-gradient(135deg, #7c3aed, #6d28d9);
-            color: white;
-            border-color: transparent;
-        }
-        body:not(.dark) .badge.primary {
-            background: linear-gradient(135deg, #6d28d9, #7c3aed);
-            color: white;
-        }
+    .bento-card:hover {
+      border-color: rgba(160, 120, 255, 0.15);
+      box-shadow: 0 24px 60px -12px rgba(120, 80, 255, 0.15);
+    }
 
-        .contact-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px 28px;
-            margin-top: 14px;
-        }
-        .contact-row a,
-        .contact-row span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
-            color: #a78bfa;
-            cursor: pointer;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-        body:not(.dark) .contact-row a,
-        body:not(.dark) .contact-row span {
-            color: #6d28d9;
-        }
-        .contact-row a:hover,
-        .contact-row span:hover {
-            color: #c8b6ff;
-            transform: translateY(-1px);
-        }
+    .gradient-number {
+      background: linear-gradient(135deg, #a78bfa, #7c3aed, #6d28d9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        .hero-stats {
-            flex: 1;
-            min-width: 180px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            background: rgba(30, 20, 60, 0.50);
-            padding: 22px 18px;
-            border-radius: 28px;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(160, 130, 255, 0.08);
-        }
-        body:not(.dark) .hero-stats {
-            background: rgba(230, 220, 255, 0.50);
-            border-color: rgba(100, 70, 200, 0.08);
-        }
-        .stat-item {
-            text-align: center;
-        }
-        .stat-num {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #a78bfa;
-            letter-spacing: -0.2px;
-            text-shadow: 0 0 30px rgba(120, 80, 240, 0.20);
-        }
-        body:not(.dark) .stat-num {
-            color: #6d28d9;
-            text-shadow: 0 0 30px rgba(100, 70, 200, 0.10);
-        }
-        .stat-label {
-            font-size: 0.7rem;
-            opacity: 0.7;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            color: #b8abdd;
-        }
-        body:not(.dark) .stat-label {
-            color: #5a4a7a;
-        }
+    .tech-capsule {
+      background: rgba(160, 120, 255, 0.08);
+      border: 1px solid rgba(160, 120, 255, 0.12);
+      color: #c8b8ff;
+      padding: 0.2rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      display: inline-block;
+      transition: 0.2s;
+    }
+    .tech-capsule:hover {
+      background: rgba(160, 120, 255, 0.16);
+      border-color: rgba(160, 120, 255, 0.25);
+    }
 
-        /* ===== 通用组件 ===== */
-        section {
-            margin: 32px 0 20px;
-        }
-        .section-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #d4c8ff;
-        }
-        body:not(.dark) .section-title {
-            color: #2d1b69;
-        }
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(90deg, rgba(160, 130, 255, 0.40), transparent);
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 18px;
-        }
-        .card {
-            background: rgba(30, 20, 60, 0.45);
-            backdrop-filter: blur(8px);
-            padding: 18px 20px;
-            border-radius: 24px;
-            transition: all 0.25s ease;
-            border: 1px solid rgba(160, 130, 255, 0.06);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-        body:not(.dark) .card {
-            background: rgba(245, 240, 255, 0.60);
-            border-color: rgba(100, 70, 200, 0.06);
-            box-shadow: 0 4px 20px rgba(80, 60, 180, 0.06);
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(80, 60, 200, 0.20);
-            border-color: rgba(160, 130, 255, 0.15);
-        }
-        body:not(.dark) .card:hover {
-            box-shadow: 0 12px 40px rgba(80, 60, 180, 0.10);
-            border-color: rgba(100, 70, 200, 0.15);
-        }
-        .card.highlight-card {
-            background: linear-gradient(135deg, rgba(100, 70, 200, 0.15), rgba(80, 50, 180, 0.08));
-            border-left: 3px solid #a78bfa;
-        }
-        body:not(.dark) .card.highlight-card {
-            background: linear-gradient(135deg, rgba(100, 70, 200, 0.06), rgba(80, 50, 180, 0.03));
-            border-left-color: #6d28d9;
-        }
+    .timeline-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #a78bfa;
+      box-shadow: 0 0 18px rgba(120, 80, 255, 0.25);
+      flex-shrink: 0;
+    }
 
-        /* ===== Tabs ===== */
-        .tabs-bar {
-            display: flex;
-            gap: 4px;
-            border-bottom: 2px solid rgba(160, 130, 255, 0.10);
-            margin-bottom: 22px;
-            flex-wrap: wrap;
-        }
-        body:not(.dark) .tabs-bar {
-            border-bottom-color: rgba(100, 70, 200, 0.10);
-        }
-        .tab-btn {
-            padding: 8px 22px;
-            border: none;
-            background: transparent;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 40px 40px 0 0;
-            transition: 0.2s;
-            color: #b8abdd;
-            font-size: 0.9rem;
-        }
-        body:not(.dark) .tab-btn {
-            color: #5a4a7a;
-        }
-        .tab-btn.active {
-            background: linear-gradient(135deg, #7c3aed, #6d28d9);
-            color: white;
-            box-shadow: 0 4px 20px rgba(120, 80, 240, 0.25);
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-            animation: fadeUp 0.3s ease;
-        }
-        @keyframes fadeUp {
-            0% {
-                opacity: 0.4;
-                transform: translateY(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0b0715; }
+    ::-webkit-scrollbar-thumb { background: #7c3aed60; border-radius: 99px; }
 
-        .exp-item {
-            margin-bottom: 22px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid rgba(160, 130, 255, 0.06);
-        }
-        body:not(.dark) .exp-item {
-            border-bottom-color: rgba(100, 70, 200, 0.06);
-        }
-        .exp-item:last-child {
-            border-bottom: none;
-        }
-        .exp-header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: #d4c8ff;
-        }
-        body:not(.dark) .exp-header {
-            color: #2d1b69;
-        }
-        .exp-sub {
-            font-weight: 400;
-            color: #b8abdd;
-            font-size: 0.85rem;
-        }
-        body:not(.dark) .exp-sub {
-            color: #7a6a9a;
-        }
-        .exp-desc {
-            padding-left: 4px;
-            list-style: none;
-            margin-top: 8px;
-        }
-        .exp-desc li {
-            margin-left: 20px;
-            margin-bottom: 6px;
-            position: relative;
-            color: #cfc5e8;
-        }
-        body:not(.dark) .exp-desc li {
-            color: #3a2a5a;
-        }
-        .exp-desc li::before {
-            content: "✦";
-            color: #a78bfa;
-            position: absolute;
-            left: -18px;
-            font-size: 0.7rem;
-            top: 2px;
-        }
-        body:not(.dark) .exp-desc li::before {
-            color: #6d28d9;
-        }
-
-        /* ===== 技能 ===== */
-        .skill-tag {
-            display: inline-block;
-            background: rgba(160, 130, 255, 0.08);
-            border: 1px solid rgba(160, 130, 255, 0.08);
-            padding: 4px 16px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            margin: 4px 8px 4px 0;
-            font-weight: 500;
-            color: #c8b6ff;
-            backdrop-filter: blur(4px);
-        }
-        body:not(.dark) .skill-tag {
-            background: rgba(100, 70, 200, 0.04);
-            border-color: rgba(100, 70, 200, 0.06);
-            color: #4a3a6a;
-        }
-        .skill-group {
-            margin-bottom: 12px;
-        }
-        .skill-group strong {
-            display: inline-block;
-            min-width: 70px;
-            font-weight: 600;
-            color: #d4c8ff;
-        }
-        body:not(.dark) .skill-group strong {
-            color: #2d1b69;
-        }
-
-        /* ===== 页脚 ===== */
-        footer {
-            margin-top: 36px;
-            padding-top: 18px;
-            border-top: 1px solid rgba(160, 130, 255, 0.06);
-            text-align: center;
-            font-size: 0.8rem;
-            opacity: 0.5;
-            color: #b8abdd;
-        }
-        body:not(.dark) footer {
-            color: #5a4a7a;
-            border-top-color: rgba(100, 70, 200, 0.06);
-        }
-
-        /* ===== 返回顶部 ===== */
-        .back-top {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            background: linear-gradient(135deg, #7c3aed, #6d28d9);
-            color: white;
-            border: none;
-            width: 48px;
-            height: 48px;
-            border-radius: 40px;
-            font-size: 1.4rem;
-            cursor: pointer;
-            box-shadow: 0 8px 30px rgba(120, 80, 240, 0.35);
-            opacity: 0;
-            transition: 0.25s;
-            pointer-events: none;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .back-top.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .back-top:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 40px rgba(120, 80, 240, 0.45);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-            }
-        }
-
-        /* ===== 打印样式 ===== */
-        @media print {
-            body {
-                background: white !important;
-                color: #1e1a2e !important;
-                padding: 0 !important;
-            }
-            body::before,
-            body::after {
-                display: none !important;
-            }
-            .container {
-                background: white !important;
-                backdrop-filter: none !important;
-                box-shadow: none !important;
-                border: 1px solid #ddd !important;
-                padding: 20px !important;
-            }
-            .nav-actions,
-            .icon-btn,
-            .back-top {
-                display: none !important;
-            }
-            .card:hover {
-                transform: none !important;
-                box-shadow: none !important;
-            }
-            .hero-stats {
-                background: #f4f0ff !important;
-                border: 1px solid #ddd !important;
-            }
-            .tab-btn {
-                background: #f4f0ff !important;
-                color: #1e1a2e !important;
-            }
-            .tab-btn.active {
-                background: #6d28d9 !important;
-                color: white !important;
-            }
-            .card {
-                background: #faf8ff !important;
-                border-color: #e8e0ff !important;
-            }
-            .badge {
-                background: #f4f0ff !important;
-                border-color: #ddd !important;
-                color: #2d1b69 !important;
-            }
-            .badge.primary {
-                background: #6d28d9 !important;
-                color: white !important;
-            }
-            .hero-text h1 {
-                -webkit-text-fill-color: #2d1b69 !important;
-                background: none !important;
-                color: #2d1b69 !important;
-            }
-            .nav-name {
-                -webkit-text-fill-color: #6d28d9 !important;
-                background: none !important;
-                color: #6d28d9 !important;
-            }
-            .stat-num {
-                color: #6d28d9 !important;
-                text-shadow: none !important;
-            }
-            .exp-desc li::before {
-                color: #6d28d9 !important;
-            }
-            .contact-row a,
-            .contact-row span {
-                color: #6d28d9 !important;
-            }
-            .section-title {
-                color: #2d1b69 !important;
-            }
-            .exp-header {
-                color: #2d1b69 !important;
-            }
-            .exp-sub {
-                color: #5a4a7a !important;
-            }
-            .exp-desc li {
-                color: #3a2a5a !important;
-            }
-            .skill-group strong {
-                color: #2d1b69 !important;
-            }
-            .skill-tag {
-                color: #4a3a6a !important;
-                background: #f4f0ff !important;
-                border-color: #ddd !important;
-            }
-            footer {
-                color: #5a4a7a !important;
-                border-top-color: #ddd !important;
-            }
-            .hero-text p {
-                color: #3a2a5a !important;
-            }
-            .hero-text .subhead {
-                color: #5a4a7a !important;
-            }
-            .stat-label {
-                color: #5a4a7a !important;
-            }
-            .nav-links a {
-                color: #4a3a6a !important;
-            }
-            .highlight-card {
-                border-left-color: #6d28d9 !important;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .bento-card { border-radius: 1.5rem; padding: 1.25rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container" id="app">
-        <!-- ===== 导航 ===== -->
-        <nav>
-            <div class="nav-left">
-                <span class="nav-name">✦ 张宇航</span>
-                <div class="nav-links">
-                    <a href="#hero">摘要</a>
-                    <a href="#highlights">亮点</a>
-                    <a href="#exp">经历</a>
-                    <a href="#projects">项目</a>
-                    <a href="#skills">技能</a>
-                    <a href="#edu">教育</a>
-                </div>
-            </div>
-            <div class="nav-actions">
-                <button class="icon-btn" id="themeToggle" aria-label="切换深浅色">🌙</button>
-                <button class="icon-btn" id="printBtn" aria-label="打印">🖨️</button>
-            </div>
-        </nav>
 
-        <!-- ===== 挂载点 ===== -->
-        <div id="resume-root"></div>
+  <div class="bento-grid">
 
-        <!-- ===== 返回顶部 ===== -->
-        <button class="back-top" id="backTop" aria-label="返回顶部">↑</button>
+    <!-- ========================================================= -->
+    <!-- BENTO GRID (桌面 3列 不对称)                              -->
+    <!-- ========================================================= -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 auto-rows-auto">
+
+      <!-- ===== 卡片 1: 主卡片 (占2列) ===== -->
+      <div class="md:col-span-2 bento-card" data-tilt data-tilt-max="6" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.12">
+        <div class="flex flex-col h-full">
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">张宇航</h1>
+          <div class="text-cyan-400 font-semibold text-base md:text-lg mt-0.5">数据分析方向 · 准大一 (2026级)</div>
+          <p class="text-slate-300 text-sm md:text-base mt-3 leading-relaxed max-w-2xl">
+            高考 524 分（超一本线），语文 115 分（全省前 8%），选考物理+化学+生物。
+            自学 Python、SQL、Tableau，具备数据清洗、统计建模与可视化能力。
+            远程实习中处理日均 10 万+ 日志，数据准确率提升至 99.2%，搭建自动化报表脚本效率提升 6 倍。
+            热爱羽毛球，暴力进攻型单打选手，校队副队长，市级单打季军。
+          </p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="tech-capsule">Python (Pandas/NumPy/Matplotlib)</span>
+            <span class="tech-capsule">SQL (MySQL/PostgreSQL)</span>
+            <span class="tech-capsule">Tableau</span>
+            <span class="tech-capsule">Excel</span>
+          </div>
+          <div class="flex flex-wrap gap-4 mt-5 text-sm font-medium">
+            <a href="tel:15861936143" class="flex items-center gap-1.5 text-slate-300 hover:text-cyan-400 transition">
+              <i data-lucide="phone" class="w-4 h-4"></i> 15861936143
+            </a>
+            <span id="emailCopy" class="flex items-center gap-1.5 text-slate-300 hover:text-cyan-400 transition cursor-pointer">
+              <i data-lucide="mail" class="w-4 h-4"></i> 3628690779@qq.com
+            </span>
+            <a href="http://github.com/m7g89skyk6-boop‑dev" target="_blank" rel="noopener" class="flex items-center gap-1.5 text-slate-300 hover:text-cyan-400 transition">
+              <i data-lucide="github" class="w-4 h-4"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 卡片 2: 战绩指标 (1列) ===== -->
+      <div class="bento-card" data-tilt data-tilt-max="6" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.10">
+        <div class="flex flex-col h-full justify-center gap-2">
+          <div class="text-center">
+            <div class="gradient-number text-4xl font-extrabold">524</div>
+            <div class="text-slate-400 text-[0.6rem] uppercase tracking-wider">高考总分</div>
+          </div>
+          <div class="text-center">
+            <div class="gradient-number text-4xl font-extrabold">99.2%</div>
+            <div class="text-slate-400 text-[0.6rem] uppercase tracking-wider">数据准确率</div>
+          </div>
+          <div class="text-center">
+            <div class="gradient-number text-4xl font-extrabold">25min</div>
+            <div class="text-slate-400 text-[0.6rem] uppercase tracking-wider">报表产出</div>
+          </div>
+          <div class="text-center">
+            <div class="gradient-number text-4xl font-extrabold">18%</div>
+            <div class="text-slate-400 text-[0.6rem] uppercase tracking-wider">复购提升</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 卡片 3: 主打项目 (占2列) ===== -->
+      <div class="md:col-span-2 bento-card" data-tilt data-tilt-max="6" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.12">
+        <h3 class="text-white font-bold text-lg flex items-center gap-2 mb-3">
+          <i data-lucide="folder-git" class="w-5 h-5 text-cyan-400"></i> 主打项目
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1">
+          <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+            <div class="text-white font-semibold text-base">电商用户消费行为分析</div>
+            <div class="flex flex-wrap gap-1 mt-1">
+              <span class="tech-capsule text-[0.6rem]">Python</span>
+              <span class="tech-capsule text-[0.6rem]">K-Means</span>
+              <span class="tech-capsule text-[0.6rem]">Tableau</span>
+            </div>
+            <p class="text-slate-300 text-sm mt-2">10 万+ 订单聚类 4 类用户群体，获「创新实践优秀案例」</p>
+          </div>
+          <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+            <div class="text-white font-semibold text-base">二手房价预测模型</div>
+            <div class="flex flex-wrap gap-1 mt-1">
+              <span class="tech-capsule text-[0.6rem]">Python</span>
+              <span class="tech-capsule text-[0.6rem]">Scikit-learn</span>
+            </div>
+            <p class="text-slate-300 text-sm mt-2">3 万+ 房源，随机森林 R²=0.83，Top5 影响特征</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 卡片 4: 技能聚合 (1列) ===== -->
+      <div class="bento-card" data-tilt data-tilt-max="6" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.10">
+        <h3 class="text-white font-bold text-lg flex items-center gap-2 mb-3">
+          <i data-lucide="code-2" class="w-5 h-5 text-cyan-400"></i> 技能栈
+        </h3>
+        <div class="flex flex-col gap-3 flex-1">
+          <div>
+            <span class="text-slate-400 text-xs font-semibold uppercase tracking-wider">🗣 语言</span>
+            <div class="flex flex-wrap gap-1.5 mt-1.5">
+              <span class="tech-capsule">Python</span>
+              <span class="tech-capsule">SQL</span>
+              <span class="tech-capsule">Java</span>
+            </div>
+          </div>
+          <div>
+            <span class="text-slate-400 text-xs font-semibold uppercase tracking-wider">🔧 工具</span>
+            <div class="flex flex-wrap gap-1.5 mt-1.5">
+              <span class="tech-capsule">Tableau</span>
+              <span class="tech-capsule">Excel</span>
+              <span class="tech-capsule">Git</span>
+              <span class="tech-capsule">Linux</span>
+            </div>
+          </div>
+          <div>
+            <span class="text-slate-400 text-xs font-semibold uppercase tracking-wider">📊 领域</span>
+            <div class="flex flex-wrap gap-1.5 mt-1.5">
+              <span class="tech-capsule">数据清洗</span>
+              <span class="tech-capsule">统计分析</span>
+              <span class="tech-capsule">A/B测试</span>
+              <span class="tech-capsule">可视化</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 卡片 5: 经历横向流动 (占满3列) ===== -->
+      <div class="md:col-span-3 bento-card" data-tilt data-tilt-max="6" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.08">
+        <h3 class="text-white font-bold text-lg flex items-center gap-2 mb-4">
+          <i data-lucide="briefcase" class="w-5 h-5 text-cyan-400"></i> 工作 · 实习
+        </h3>
+        <div class="flex flex-col md:flex-row gap-4 md:gap-6">
+          <!-- 时间轴条目 -->
+          <div class="flex-1 flex items-start gap-3">
+            <div class="flex flex-col items-center">
+              <div class="timeline-dot"></div>
+              <div class="w-0.5 h-full bg-purple-500/20 mt-1"></div>
+            </div>
+            <div>
+              <div class="text-white font-semibold">江苏智云数据科技 (远程实习)</div>
+              <div class="text-cyan-400 text-sm font-medium">数据分析助理实习生</div>
+              <div class="text-slate-400 text-xs">2026.06 – 2026.08 (预计)</div>
+              <ul class="mt-2 space-y-1 text-slate-300 text-sm">
+                <li class="flex items-start gap-2"><i data-lucide="circle" class="w-1.5 h-1.5 text-cyan-400 mt-1.5"></i> 清洗日均 10 万+ 日志，准确率 92% → 99.2%</li>
+                <li class="flex items-start gap-2"><i data-lucide="circle" class="w-1.5 h-1.5 text-cyan-400 mt-1.5"></i> RFM 模型划分 3.2 万用户，复购率 +18%</li>
+                <li class="flex items-start gap-2"><i data-lucide="circle" class="w-1.5 h-1.5 text-cyan-400 mt-1.5"></i> Python+SQL 自动化日报，2.5h → 25min</li>
+                <li class="flex items-start gap-2"><i data-lucide="circle" class="w-1.5 h-1.5 text-cyan-400 mt-1.5"></i> 漏斗分析定位支付页跳出率 63%，建议被采纳</li>
+              </ul>
+            </div>
+          </div>
+          <!-- 羽毛球条目 -->
+          <div class="flex-1 flex items-start gap-3">
+            <div class="flex flex-col items-center">
+              <div class="timeline-dot"></div>
+            </div>
+            <div>
+              <div class="text-white font-semibold">🏸 暴力进攻型单打 · 校队副队长</div>
+              <div class="text-slate-400 text-xs">盐城市龙冈中学 · 2024-2026</div>
+              <p class="text-slate-300 text-sm mt-2">后场扣杀 280+ km/h，市级团体第二、单打季军、双打冠军。体能充沛，关键分心理素质稳定。</p>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <span class="tech-capsule">市级团体第二</span>
+                <span class="tech-capsule">单打季军</span>
+                <span class="tech-capsule">双打冠军</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 卡片 6: 教育 + 证书 (占2列) ===== -->
+      <div class="md:col-span-2 bento-card" data-tilt data-tilt-max="6" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.10">
+        <h3 class="text-white font-bold text-lg flex items-center gap-2 mb-3">
+          <i data-lucide="graduation-cap" class="w-5 h-5 text-cyan-400"></i> 教育 · 证书
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1">
+          <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+            <div class="text-white font-semibold">淮安大学 (准大一)</div>
+            <div class="text-cyan-400 text-sm">物理+化学+生物</div>
+            <div class="text-slate-400 text-xs mt-1">2026.09 入学 · 高考 524 分 (超一本线)</div>
+          </div>
+          <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+            <div class="text-white font-semibold flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-cyan-400"></i> 荣誉</div>
+            <ul class="mt-1 space-y-0.5 text-slate-300 text-sm">
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400 mt-0.5"></i> 生物联赛江苏赛区二等奖</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400 mt-0.5"></i> 羽毛球单打季军 / 双打冠军</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400 mt-0.5"></i> TOEIC 830</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400 mt-0.5"></i> 科技创新之星 (连续两年)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 卡片 7: 亮点聚合 (占1列) ===== -->
+      <div class="bento-card" data-tilt data-tilt-max="6" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.10">
+        <h3 class="text-white font-bold text-lg flex items-center gap-2 mb-3">
+          <i data-lucide="zap" class="w-5 h-5 text-cyan-400"></i> 亮点
+        </h3>
+        <ul class="space-y-2 text-sm text-slate-300 flex-1">
+          <li class="flex items-start gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-cyan-400 mt-0.5"></i> 日报效率提升 6 倍</li>
+          <li class="flex items-start gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-cyan-400 mt-0.5"></i> RFM 用户分层复购 +18%</li>
+          <li class="flex items-start gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-cyan-400 mt-0.5"></i> 数据准确率 92% → 99.2%</li>
+          <li class="flex items-start gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-cyan-400 mt-0.5"></i> K-Means 4 类用户画像</li>
+        </ul>
+      </div>
+
+    </div><!-- end grid -->
+
+    <!-- 页脚 -->
+    <div class="mt-8 text-center text-slate-500 text-xs border-t border-white/5 pt-4">
+      ✦ 张宇航 · 简历持续更新 · 最后更新 2026.08
     </div>
 
-    <script>
-        (function() {
-            // =============================================
-            //  简历数据（完整丰富版）
-            // =============================================
-            const resume = {
-                name: '张宇航',
-                title: '数据分析方向 · 准大一 (2026级)',
-                contact: {
-                    phone: '15861936143',
-                    email: '3628690779@qq.com',
-                    github: 'http://github.com/m7g89skyk6-boop‑dev'
-                },
-                summary: '高考 524 分（超一本线），语文 115 分（全省前 8%），选考物理+化学+生物。自学 Python、SQL、Tableau，具备数据清洗、统计建模与可视化能力。远程实习中处理日均 10 万+ 日志，数据准确率提升至 99.2%，搭建自动化报表脚本效率提升 6 倍。热爱羽毛球，暴力进攻型单打选手，校队副队长，市级单打季军。',
-                stats: [
-                    { num: '524', label: '高考总分' },
-                    { num: '99.2%', label: '数据准确率' },
-                    { num: '25min', label: '报表产出' },
-                    { num: '18%', label: '复购提升' }
-                ],
-                highlights: [
-                    '自动化日报脚本将报表耗时从 2.5 小时压缩至 25 分钟，效率提升 6 倍',
-                    'RFM 模型划分 3.2 万用户为 5 个价值层级，复购率相对提升 18%',
-                    '数据清洗使底层准确率从 92% 提升至 99.2%',
-                    'K-Means 聚类输出 4 类用户画像，驱动差异化运营策略落地'
-                ],
-                skills: {
-                    languages: ['Python (Pandas/NumPy/Matplotlib)', 'SQL (MySQL/PostgreSQL)', 'Java (基础)'],
-                    tools: ['Tableau', 'Excel (高级函数/透视表)', 'Git', 'Linux', 'XMind', 'PPT'],
-                    domains: ['数据清洗', '描述性统计', 'A/B 测试框架', '商业可视化']
-                },
-                experience: [{
-                    company: '江苏智云数据科技有限公司 (远程实习)',
-                    role: '数据分析助理实习生',
-                    period: '2026.06 – 2026.08 (预计)',
-                    details: [
-                        '清洗日均 10 万+ 用户行为日志，处理异常值与缺失数据，底层准确率 92% → 99.2%',
-                        '构建 RFM 模型划分 3.2 万用户为 5 个价值层级，输出高价值用户画像，复购率相对提升 18%',
-                        '开发 Python + SQL 自动化日报脚本，报表产出 2.5h → 25min，释放团队每日 2 小时人力',
-                        '完成渠道转化漏斗分析 (曝光→点击→加购→支付)，定位支付页跳出率 63%，提出简化表单建议，被产品组采纳'
-                    ]
-                }],
-                projects: [{
-                    name: '电商用户消费行为分析',
-                    tech: 'Python, K-Means, Tableau',
-                    desc: '爬取 10 万+ 订单数据，清洗与特征工程后聚类 4 类用户群体，输出差异化运营策略，获校内「创新实践优秀案例」'
-                }, {
-                    name: '二手房价预测模型',
-                    tech: 'Python, Scikit-learn, Pandas',
-                    desc: '基于 3 万+ 房源数据构建随机森林模型 (R²=0.83)，提炼 Top5 影响特征 (面积/地段/房龄/楼层/装修)，用于教学案例'
-                }, {
-                    name: '用户流失预警看板 (Tableau)',
-                    tech: 'Tableau, SQL, Excel',
-                    desc: '搭建交互式流失监控看板，展示流失高危群体占比及变化趋势，辅助运营提前干预'
-                }],
-                education: {
-                    school: '淮安大学 (准大一)',
-                    major: '物理 + 化学 + 生物 (理科综合)',
-                    detail: '2026年9月入学 · 高中毕业于江苏盐城龙冈中学，高考 524 分 (超一本线)，语文 115 分 (全省前 8%)'
-                },
-                certs: [
-                    '全国中学生生物学联赛 (江苏赛区) 二等奖 (2025)',
-                    '盐城市青少年羽毛球锦标赛 男子单打季军 / 双打冠军 (2025)',
-                    'TOEIC Listening & Reading 830 分 (2026.03)',
-                    '校级「科技创新之星」连续两年 (2024, 2025)'
-                ],
-                badminton: '🏸 暴力进攻型单打 · 后场扣杀速度快、落点刁钻，结合快速上网扑杀形成连续压迫。高中校队副队长，带队获盐城市级团体赛第二名。体能充沛，关键分心理素质稳定。淮安大学羽毛球社核心成员（预加入）。',
-                footer: '✦ 张宇航 · 简历持续更新 · 最后更新 2026.08'
-            };
+  </div><!-- end bento-grid -->
 
-            // =============================================
-            //  渲染
-            // =============================================
-            const root = document.getElementById('resume-root');
+  <!-- ========================================================= -->
+  <!-- JavaScript: Tilt 挂载 + 移动端禁用 + 复制 + 图标           -->
+  <!-- ========================================================= -->
+  <script>
+    (function() {
+      // ---- 判断移动/触摸 ----
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768;
 
-            function render() {
-                root.innerHTML = `
-                    <!-- ===== Hero ===== -->
-                    <section id="hero" class="hero">
-                        <div class="hero-text">
-                            <h1>${resume.name}</h1>
-                            <div class="subhead">${resume.title}</div>
-                            <p>${resume.summary}</p>
-                            <div class="badge-group">
-                                ${resume.skills.languages.slice(0,2).map(s => `<span class="badge primary">${s}</span>`).join('')}
-                                ${resume.skills.tools.slice(0,3).map(s => `<span class="badge">${s}</span>`).join('')}
-                                ${resume.skills.domains.slice(0,2).map(s => `<span class="badge">${s}</span>`).join('')}
-                            </div>
-                            <div class="contact-row">
-                                <a href="tel:${resume.contact.phone}">📞 ${resume.contact.phone}</a>
-                                <span id="emailCopy" style="cursor:pointer;">✉️ ${resume.contact.email}</span>
-                                <a href="${resume.contact.github}" target="_blank">🐙 GitHub</a>
-                            </div>
-                        </div>
-                        <div class="hero-stats">
-                            ${resume.stats.map(s => `<div class="stat-item"><div class="stat-num">${s.num}</div><div class="stat-label">${s.label}</div></div>`).join('')}
-                        </div>
-                    </section>
+      // ---- 1) Vanilla-Tilt 挂载 (移动端跳过) ----
+      const cards = document.querySelectorAll('.bento-card');
+      if (!isTouchDevice && typeof VanillaTilt !== 'undefined') {
+        VanillaTilt.init(cards, {
+          max: 6,
+          speed: 400,
+          glare: true,
+          'max-glare': 0.12,
+          gyroscope: true,
+        });
+      } else {
+        // 移动端移除 data-tilt 属性以防冲突
+        cards.forEach(c => c.removeAttribute('data-tilt'));
+      }
 
-                    <!-- ===== Highlights ===== -->
-                    <section id="highlights">
-                        <div class="section-title">✦ 亮点成果</div>
-                        <div class="card-grid">
-                            ${resume.highlights.map(h => `<div class="card highlight-card">${h}</div>`).join('')}
-                        </div>
-                    </section>
+      // ---- 2) Lucide Icons ----
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
 
-                    <!-- ===== Experience Tabs ===== -->
-                    <section id="exp">
-                        <div class="section-title">✦ 经历</div>
-                        <div class="tabs-bar" role="tablist">
-                            <button class="tab-btn active" role="tab" data-tab="exp-work">工作 / 实习</button>
-                            <button class="tab-btn" role="tab" data-tab="exp-badminton">🏸 羽毛球</button>
-                        </div>
-                        <div id="exp-work" class="tab-content active" role="tabpanel">
-                            ${resume.experience.map(exp => `
-                                <div class="exp-item">
-                                    <div class="exp-header">
-                                        <span>${exp.company}</span>
-                                        <span class="exp-sub">${exp.period}</span>
-                                    </div>
-                                    <div style="font-weight:600; font-size:0.95rem; margin:2px 0 4px; color: #b8abdd;">${exp.role}</div>
-                                    <ul class="exp-desc">${exp.details.map(d => `<li>${d}</li>`).join('')}</ul>
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div id="exp-badminton" class="tab-content" role="tabpanel">
-                            <div class="card" style="margin-top:4px; padding:20px 24px;">
-                                <div style="font-size:1.1rem; font-weight:600; margin-bottom:6px; color: #d4c8ff;">🏸 暴力进攻型单打 · 校队副队长</div>
-                                <p style="margin-bottom:8px; color: #cfc5e8;">${resume.badminton}</p>
-                                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;">
-                                    <span class="badge">市级团体第二</span>
-                                    <span class="badge">单打季军</span>
-                                    <span class="badge">双打冠军</span>
-                                    <span class="badge">爆发力突出</span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+      // ---- 3) 复制邮箱 + Toast ----
+      const emailEl = document.getElementById('emailCopy');
+      const toast = document.createElement('div');
+      toast.id = 'toast';
+      toast.className =
+        'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-xl bg-zinc-900/80 backdrop-blur-xl border border-white/10 text-slate-200 text-sm font-medium shadow-2xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none';
+      toast.textContent = '✅ 邮箱已复制到剪贴板';
+      document.body.appendChild(toast);
 
-                    <!-- ===== Projects ===== -->
-                    <section id="projects">
-                        <div class="section-title">✦ 项目作品</div>
-                        <div class="card-grid">
-                            ${resume.projects.map(p => `
-                                <div class="card">
-                                    <div style="font-weight:700; font-size:1.05rem; color: #d4c8ff;">${p.name}</div>
-                                    <div style="font-size:0.8rem; color: #b8abdd; margin:6px 0 8px; display:flex; flex-wrap:wrap; gap:4px;">
-                                        ${p.tech.split(',').map(t => `<span class="skill-tag" style="background:rgba(160,130,255,0.06); padding:2px 12px;">${t.trim()}</span>`).join('')}
-                                    </div>
-                                    <div style="font-size:0.93rem; color: #cfc5e8;">${p.desc}</div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </section>
+      let toastTimer;
 
-                    <!-- ===== Skills ===== -->
-                    <section id="skills">
-                        <div class="section-title">✦ 技能矩阵</div>
-                        <div style="display:flex; flex-wrap:wrap; gap:20px 40px; background:rgba(30,20,60,0.30); padding:18px 22px; border-radius:24px; backdrop-filter:blur(4px); border:1px solid rgba(160,130,255,0.06);">
-                            <div class="skill-group"><strong>🗣 语言</strong><br>${resume.skills.languages.map(s => `<span class="skill-tag">${s}</span>`).join('')}</div>
-                            <div class="skill-group"><strong>🔧 工具</strong><br>${resume.skills.tools.map(s => `<span class="skill-tag">${s}</span>`).join('')}</div>
-                            <div class="skill-group"><strong>📊 领域</strong><br>${resume.skills.domains.map(s => `<span class="skill-tag">${s}</span>`).join('')}</div>
-                        </div>
-                    </section>
+      function showToast(msg) {
+        toast.textContent = msg || '✅ 邮箱已复制到剪贴板';
+        toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+          toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 2200);
+      }
 
-                    <!-- ===== Education & Certs ===== -->
-                    <section id="edu">
-                        <div class="section-title">✦ 教育 · 证书</div>
-                        <div class="card-grid">
-                            <div class="card">
-                                <strong style="font-size:1.05rem; color: #d4c8ff;">${resume.education.school}</strong><br>
-                                <span style="font-weight:500; color: #b8abdd;">${resume.education.major}</span><br>
-                                <span style="font-size:0.9rem; color: #b8abdd;">${resume.education.detail}</span>
-                            </div>
-                            <div class="card">
-                                <strong style="color: #d4c8ff;">📜 证书 & 荣誉</strong>
-                                <ul style="margin-top:10px; list-style:disc; padding-left:20px; font-size:0.9rem; color: #cfc5e8;">
-                                    ${resume.certs.map(c => `<li style="margin-bottom:4px;">${c}</li>`).join('')}
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
+      if (emailEl) {
+        emailEl.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const email = '3628690779@qq.com';
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(email).then(() => showToast('✅ 邮箱已复制到剪贴板'))
+              .catch(() => fallbackCopy(email));
+          } else {
+            fallbackCopy(email);
+          }
+        });
+      }
 
-                    <footer>${resume.footer}</footer>
-                `;
+      function fallbackCopy(text) {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showToast('✅ 邮箱已复制到剪贴板');
+        } catch (_) {
+          showToast('❌ 复制失败，请手动复制');
+        }
+      }
 
-                // =============================================
-                //  交互绑定
-                // =============================================
+      // ---- 4) 返回顶部（简易） ----
+      const backBtn = document.createElement('button');
+      backBtn.id = 'backTop';
+      backBtn.className =
+        'fixed bottom-6 right-4 z-40 p-3 rounded-full bg-zinc-900/80 backdrop-blur-xl border border-white/10 text-cyan-400 hover:text-white transition shadow-xl';
+      backBtn.innerHTML = `<i data-lucide="arrow-up" class="w-5 h-5"></i>`;
+      document.body.appendChild(backBtn);
+      if (typeof lucide !== 'undefined') lucide.createIcons();
 
-                // ---- Tabs ----
-                document.querySelectorAll('[role="tab"]').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const parent = this.closest('.tabs-bar');
-                        parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                        this.classList.add('active');
-                        const panelId = this.dataset.tab;
-                        document.querySelectorAll('.tab-content').forEach(p => p.classList.remove('active'));
-                        document.getElementById(panelId).classList.add('active');
-                    });
-                    btn.addEventListener('keydown', (e) => {
-                        const tabs = [...btn.closest('.tabs-bar').querySelectorAll('.tab-btn')];
-                        const idx = tabs.indexOf(btn);
-                        if (e.key === 'ArrowRight') {
-                            e.preventDefault();
-                            tabs[(idx + 1) % tabs.length]?.focus();
-                            tabs[(idx + 1) % tabs.length]?.click();
-                        }
-                        if (e.key === 'ArrowLeft') {
-                            e.preventDefault();
-                            tabs[(idx - 1 + tabs.length) % tabs.length]?.focus();
-                            tabs[(idx - 1 + tabs.length) % tabs.length]?.click();
-                        }
-                    });
-                });
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            if (window.scrollY > 300) backBtn.classList.add('opacity-100');
+            else backBtn.classList.remove('opacity-100');
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+      backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-                // ---- 邮箱复制 ----
-                document.getElementById('emailCopy')?.addEventListener('click', function() {
-                    const email = '3628690779@qq.com';
-                    navigator.clipboard?.writeText(email).then(() => {
-                        const orig = this.innerText;
-                        this.innerText = '✅ 已复制';
-                        setTimeout(() => this.innerText = orig, 1800);
-                    }).catch(() => alert('请手动复制: ' + email));
-                });
+      // ---- 5) 打印 ----
+      const printBtn = document.createElement('button');
+      printBtn.className =
+      'fixed bottom-6 right-20 z-40 p-3 rounded-full bg-zinc-900/80 backdrop-blur-xl border border-white/10 text-cyan-400 hover:text-white transition shadow-xl';
+      printBtn.innerHTML = `<i data-lucide="printer" class="w-5 h-5"></i>`;
+      printBtn.addEventListener('click', () => window.print());
+      document.body.appendChild(printBtn);
+      if (typeof lucide !== 'undefined') lucide.createIcons();
 
-                // ---- 返回顶部 ----
-                const backBtn = document.getElementById('backTop');
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 400) backBtn.classList.add('visible');
-                    else backBtn.classList.remove('visible');
-                });
-                backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    })();
+  </script>
 
-                // ---- 打印 ----
-                document.getElementById('printBtn').addEventListener('click', () => window.print());
-
-                // ---- 深浅色 ----
-                const themeBtn = document.getElementById('themeToggle');
-                const isDark = () => document.body.classList.contains('dark');
-                themeBtn.addEventListener('click', () => {
-                    document.body.classList.toggle('dark');
-                    themeBtn.textContent = isDark() ? '☀️' : '🌙';
-                });
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    document.body.classList.add('dark');
-                    themeBtn.textContent = '☀️';
-                } else {
-                    document.body.classList.remove('dark');
-                    themeBtn.textContent = '🌙';
-                }
-            }
-
-            render();
-        })();
-    </script>
 </body>
 </html>
